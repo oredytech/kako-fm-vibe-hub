@@ -1,6 +1,6 @@
+
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Play, Clock, Calendar, Eye, ExternalLink, Loader2 } from 'lucide-react';
@@ -30,7 +30,7 @@ interface YouTubeResponse {
 }
 
 const Videos = () => {
-  const navigate = useNavigate();
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   const { data: videos, isLoading, error } = useQuery({
     queryKey: ['youtube-videos'],
@@ -62,22 +62,51 @@ const Videos = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-foreground mb-4">Vidéos</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Vidéos</h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Découvrez nos dernières vidéos, reportages et émissions en replay
           </p>
         </div>
 
+        {/* Featured Video Player */}
+        {selectedVideo && (
+          <Card className="mb-8">
+            <CardContent className="p-0">
+              <div className="aspect-video">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="rounded-t-lg"
+                ></iframe>
+              </div>
+              <div className="p-4">
+                <Button 
+                  variant="outline" 
+                  onClick={() => setSelectedVideo(null)}
+                  className="w-full"
+                >
+                  Retour à la liste des vidéos
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Videos Grid */}
         {isLoading ? (
           <div className="flex justify-center items-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            <span className="ml-2 text-muted-foreground">Chargement des vidéos...</span>
+            <Loader2 className="h-8 w-8 animate-spin text-kako-blue" />
+            <span className="ml-2 text-gray-600">Chargement des vidéos...</span>
           </div>
         ) : error ? (
           <Card className="text-center py-12">
             <CardContent>
-              <p className="text-destructive mb-4">Erreur lors du chargement des vidéos</p>
+              <p className="text-red-600 mb-4">Erreur lors du chargement des vidéos</p>
               <Button onClick={() => window.location.reload()}>
                 Réessayer
               </Button>
@@ -97,7 +126,7 @@ const Videos = () => {
                     <Button
                       size="lg"
                       className="bg-white/90 text-gray-900 hover:bg-white"
-                      onClick={() => navigate(`/video/${video.id.videoId}`)}
+                      onClick={() => setSelectedVideo(video.id.videoId)}
                     >
                       <Play className="h-5 w-5 mr-2" />
                       Regarder
@@ -112,14 +141,14 @@ const Videos = () => {
                 </div>
                 
                 <CardContent className="p-6">
-                  <h3 className="font-semibold text-lg mb-2 line-clamp-2 text-foreground">
+                  <h3 className="font-semibold text-lg mb-2 line-clamp-2">
                     {video.snippet.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
                     {video.snippet.description}
                   </p>
                   
-                  <div className="flex justify-between items-center text-xs text-muted-foreground mb-4">
+                  <div className="flex justify-between items-center text-xs text-gray-500 mb-4">
                     <div className="flex items-center space-x-1">
                       <Calendar className="h-3 w-3" />
                       <span>{formatDuration(video.snippet.publishedAt)}</span>
@@ -130,7 +159,7 @@ const Videos = () => {
                     <Button
                       size="sm"
                       className="flex-1 gradient-kako text-white"
-                      onClick={() => navigate(`/video/${video.id.videoId}`)}
+                      onClick={() => setSelectedVideo(video.id.videoId)}
                     >
                       <Play className="h-4 w-4 mr-1" />
                       Voir ici
@@ -154,7 +183,7 @@ const Videos = () => {
           <Card className="gradient-kako-soft">
             <CardContent className="p-8">
               <h3 className="text-2xl font-bold mb-4">Suivez-nous sur YouTube</h3>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-gray-600 mb-6">
                 Abonnez-vous à notre chaîne pour ne manquer aucune de nos vidéos
               </p>
               <Button 
