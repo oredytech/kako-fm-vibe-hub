@@ -119,6 +119,13 @@
   background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 68, 68, 0.1) 50%, rgba(74, 144, 226, 0.1) 100%);
 }
 
+.gradient-text {
+  background: linear-gradient(135deg, #FFD700 0%, #FF4444 50%, #4A90E2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Hover Effects */
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -144,7 +151,7 @@
 
 /* Article Content Styling */
 .article-content p {
-  @apply mb-6 leading-relaxed text-gray-800;
+  @apply mb-6 leading-relaxed;
 }
 
 .article-content h1, 
@@ -153,7 +160,7 @@
 .article-content h4, 
 .article-content h5, 
 .article-content h6 {
-  @apply font-bold text-gray-900 mt-8 mb-4;
+  @apply font-bold mt-8 mb-4;
 }
 
 .article-content h1 {
@@ -173,7 +180,7 @@
 }
 
 .article-content blockquote {
-  @apply border-l-4 border-kako-blue pl-6 py-4 my-6 italic bg-gray-50 rounded-r-lg;
+  @apply border-l-4 border-primary pl-6 py-4 my-6 italic bg-muted rounded-r-lg;
 }
 
 .article-content ul, 
@@ -190,12 +197,12 @@
 }
 
 .article-content a {
-  @apply text-kako-blue hover:underline font-medium;
+  @apply text-primary hover:underline font-medium;
 }
 
 .article-content strong, 
 .article-content b {
-  @apply font-semibold text-gray-900;
+  @apply font-semibold;
 }
 
 .article-content em, 
@@ -204,20 +211,20 @@
 }
 
 .article-content hr {
-  @apply my-8 border-gray-200;
+  @apply my-8 border-border;
 }
 
 .article-content table {
-  @apply w-full border-collapse border border-gray-300 my-6;
+  @apply w-full border-collapse border border-border my-6;
 }
 
 .article-content th, 
 .article-content td {
-  @apply border border-gray-300 px-4 py-2 text-left;
+  @apply border border-border px-4 py-2 text-left;
 }
 
 .article-content th {
-  @apply bg-gray-100 font-semibold;
+  @apply bg-muted font-semibold;
 }
 
 /* Utility classes for text truncation */
@@ -240,4 +247,55 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Comment Form Styles */
+.comment-form {
+  @apply bg-card border border-border rounded-lg p-6 mt-8;
+}
+
+.comment-form h3 {
+  @apply text-xl font-bold mb-4;
+}
+
+.comment-form .form-group {
+  @apply mb-4;
+}
+
+.comment-form label {
+  @apply block text-sm font-medium mb-2;
+}
+
+.comment-form input,
+.comment-form textarea {
+  @apply w-full px-3 py-2 border border-input rounded-md bg-background text-foreground;
+}
+
+.comment-form textarea {
+  @apply min-h-[120px] resize-vertical;
+}
+
+/* Related Articles Styles */
+.related-articles {
+  @apply bg-muted/50 border border-border rounded-lg p-6 my-8;
+}
+
+.related-articles h3 {
+  @apply text-lg font-bold mb-4 flex items-center;
+}
+
+.related-article-item {
+  @apply flex space-x-4 p-3 rounded-lg hover:bg-background transition-colors cursor-pointer;
+}
+
+.related-article-item img {
+  @apply w-16 h-16 object-cover rounded flex-shrink-0;
+}
+
+.related-article-content h4 {
+  @apply font-medium text-sm line-clamp-2 mb-1;
+}
+
+.related-article-content p {
+  @apply text-xs text-muted-foreground line-clamp-2;
 }
