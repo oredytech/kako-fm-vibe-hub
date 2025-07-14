@@ -9,7 +9,7 @@ import Index from "./pages/Index";
 import Articles from "./pages/Articles";
 import Videos from "./pages/Videos";
 import Podcasts from "./pages/Podcasts";
-import Emissions from "./pages/Emissions";
+import Programmes from "./pages/Programmes";
 import Equipe from "./pages/Equipe";
 import Contact from "./pages/Contact";
 import Soutenir from "./pages/Soutenir";
@@ -36,7 +36,7 @@ const App = () => (
             <Route path="/articles" element={<Articles />} />
             <Route path="/videos" element={<Videos />} />
             <Route path="/podcasts" element={<Podcasts />} />
-            <Route path="/emissions" element={<Emissions />} />
+            <Route path="/programmes" element={<Programmes />} />
             <Route path="/equipe" element={<Equipe />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/soutenir" element={<Soutenir />} />

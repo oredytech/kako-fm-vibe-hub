@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Clock, Calendar, Users, Radio, Play, Star } from 'lucide-react';
 
-const Emissions = () => {
+const Programmes = () => {
   const schedule = [
     {
       day: "Lundi",
@@ -107,7 +107,7 @@ const Emissions = () => {
 
   const getCurrentShow = () => {
     const now = new Date();
-    const currentDay = now.toLocaleLString('fr-FR', { weekday: 'long' });
+    const currentDay = now.toLocaleString('fr-FR', { weekday: 'long' });
     const currentTime = now.getHours() * 100 + now.getMinutes();
     
     const todaySchedule = schedule.find(day => 
@@ -139,7 +139,7 @@ const Emissions = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Nos Émissions</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Nos Programmes</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Découvrez notre programmation riche et variée, 24h/24 et 7j/7
           </p>
@@ -166,7 +166,7 @@ const Emissions = () => {
 
         {/* Featured Shows */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Émissions Vedettes</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Programmes Vedettes</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredShows.map((show, index) => (
               <Card key={index} className="hover-lift">
@@ -245,9 +245,9 @@ const Emissions = () => {
         {/* CTA Section */}
         <Card className="gradient-kako-soft">
           <CardContent className="p-8 text-center">
-            <h3 className="text-2xl font-bold mb-4">Proposez votre émission</h3>
+            <h3 className="text-2xl font-bold mb-4">Proposez votre programme</h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Vous avez une idée d'émission ? Rejoignez l'équipe KAKO FM et partagez votre passion avec nos auditeurs.
+              Vous avez une idée de programme ? Rejoignez l'équipe KAKO FM et partagez votre passion avec nos auditeurs.
             </p>
             <Button size="lg" className="gradient-kako text-white">
               Contactez-nous
@@ -259,4 +259,4 @@ const Emissions = () => {
   );
 };
 
-export default Emissions;
+export default Programmes;

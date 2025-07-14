@@ -12,7 +12,7 @@ const Navigation = () => {
     { path: '/articles', label: 'Articles' },
     { path: '/videos', label: 'Vidéos' },
     { path: '/podcasts', label: 'Podcasts' },
-    { path: '/emissions', label: 'Émissions' },
+    { path: '/programmes', label: 'Programmes' },
     { path: '/equipe', label: 'Équipe' },
     { path: '/contact', label: 'Contact' },
     { path: '/soutenir', label: 'Soutenir' },
