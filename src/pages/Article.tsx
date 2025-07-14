@@ -1,10 +1,13 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Calendar, Clock, User, Share2, Facebook, Twitter, MessageCircle, Copy, ArrowLeft } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { Calendar, Clock, User, Share2, Facebook, Twitter, MessageCircle, Copy, ArrowLeft, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface WordPressPost {
@@ -28,6 +31,11 @@ interface WordPressPost {
 
 const Article = () => {
   const { slug } = useParams<{ slug: string }>();
+  const [commentForm, setCommentForm] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
 
   const { data: article, isLoading, error } = useQuery({
     queryKey: ['article', slug],
@@ -39,6 +47,15 @@ const Article = () => {
       return data[0] as WordPressPost;
     },
     enabled: !!slug,
+  });
+
+  const { data: relatedArticles } = useQuery({
+    queryKey: ['related-articles'],
+    queryFn: async () => {
+      const response = await fetch('https://kakofm.net/wp-json/wp/v2/posts?_embed&per_page=3');
+      if (!response.ok) throw new Error('Erreur lors du chargement des articles');
+      return response.json() as Promise<WordPressPost[]>;
+    },
   });
 
   const shareUrl = `https://kakofm.net/article/${slug}`;
@@ -65,6 +82,13 @@ const Article = () => {
     if (url) {
       window.open(url, '_blank', 'width=600,height=400');
     }
+  };
+
+  const handleCommentSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Commentaire soumis:', commentForm);
+    // Ici on peut ajouter la logique pour envoyer le commentaire
+    setCommentForm({ name: '', email: '', message: '' });
   };
 
   if (isLoading) {
@@ -204,13 +228,112 @@ const Article = () => {
           </Card>
         </header>
 
-        {/* Article Content */}
-        <article className="prose prose-lg max-w-none">
-          <div 
-            className="text-gray-800 leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: article.content.rendered }}
-          />
-        </article>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Article Content */}
+          <div className="lg:col-span-2">
+            <article className="prose prose-lg max-w-none">
+              <div 
+                className="text-gray-800 leading-relaxed article-content"
+                dangerouslySetInnerHTML={{ __html: article.content.rendered }}
+              />
+            </article>
+
+            {/* Comment Form */}
+            <Card className="mt-12">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-bold mb-6">Laisser un commentaire</h3>
+                <form onSubmit={handleCommentSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="name">Nom *</Label>
+                      <Input
+                        id="name"
+                        type="text"
+                        value={commentForm.name}
+                        onChange={(e) => setCommentForm({...commentForm, name: e.target.value})}
+                        required
+                        className="mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="email">Email *</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        value={commentForm.email}
+                        onChange={(e) => setCommentForm({...commentForm, email: e.target.value})}
+                        required
+                        className="mt-1"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label htmlFor="message">Votre commentaire *</Label>
+                    <Textarea
+                      id="message"
+                      value={commentForm.message}
+                      onChange={(e) => setCommentForm({...commentForm, message: e.target.value})}
+                      required
+                      rows={5}
+                      className="mt-1"
+                      placeholder="Partagez votre avis sur cet article..."
+                    />
+                  </div>
+                  <Button type="submit" className="gradient-kako text-white">
+                    <Send className="h-4 w-4 mr-2" />
+                    Publier le commentaire
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
+            {/* À lire aussi */}
+            {relatedArticles && (
+              <Card className="sticky top-24">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold mb-4">À lire aussi</h3>
+                  <div className="space-y-4">
+                    {relatedArticles.slice(0, 3).map((relatedArticle) => (
+                      <Link
+                        key={relatedArticle.id}
+                        to={`/article/${relatedArticle.slug}`}
+                        className="block group"
+                      >
+                        <div className="flex gap-3">
+                          {relatedArticle._embedded?.['wp:featuredmedia']?.[0] && (
+                            <img
+                              src={relatedArticle._embedded['wp:featuredmedia'][0].source_url}
+                              alt={relatedArticle.title.rendered}
+                              className="w-16 h-16 object-cover rounded flex-shrink-0"
+                            />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <h4 
+                              className="text-sm font-semibold line-clamp-2 group-hover:text-kako-blue transition-colors"
+                              dangerouslySetInnerHTML={{ __html: relatedArticle.title.rendered }}
+                            />
+                            <p 
+                              className="text-xs text-gray-600 mt-1 line-clamp-2"
+                              dangerouslySetInnerHTML={{ 
+                                __html: relatedArticle.excerpt.rendered.replace(/<[^>]*>/g, '').substring(0, 80) + '...'
+                              }}
+                            />
+                            <span className="text-xs text-gray-500 mt-1 block">
+                              {new Date(relatedArticle.date).toLocaleDateString('fr-FR')}
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+        </div>
 
         {/* Article Footer */}
         <footer className="mt-12 pt-8 border-t border-gray-200">
