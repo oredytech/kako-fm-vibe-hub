@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,6 +10,8 @@ interface WordPressPost {
   title: { rendered: string };
   excerpt: { rendered: string };
   date: string;
+  link: string;
+  slug: string;
   _embedded?: {
     'wp:featuredmedia'?: Array<{
       source_url: string;
@@ -139,36 +140,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Live Section */}
-      <section className="pt-16 pb-16 bg-gradient-kako-soft">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-xl">
-            <CardHeader className="text-center">
-              <CardTitle className="text-3xl font-bold text-gray-900 mb-2">
-                🔴 À l'antenne maintenant
-              </CardTitle>
-              <p className="text-gray-600">Écoutez KAKO FM en direct</p>
-            </CardHeader>
-            <CardContent className="text-center py-8">
-              <div className="bg-gradient-to-r from-kako-yellow to-kako-red p-6 rounded-2xl text-white mb-6">
-                <h3 className="text-2xl font-bold mb-2">Émission du Matin</h3>
-                <p className="opacity-90">Avec l'équipe KAKO FM</p>
-                <div className="flex items-center justify-center space-x-4 mt-4 text-sm">
-                  <span>🕐 06:00 - 10:00</span>
-                  <span>•</span>
-                  <span>📻 En direct</span>
-                </div>
-              </div>
-              <Button size="lg" className="gradient-kako text-white hover:opacity-90">
-                🎵 Écouter maintenant
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
       {/* Latest Articles */}
-      <section className="py-16">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">Derniers Articles</h2>
@@ -222,9 +195,11 @@ const Index = () => {
                       <Button 
                         size="sm" 
                         variant="outline"
-                        onClick={() => window.open('https://kakofm.net', '_blank')}
+                        asChild
                       >
-                        Lire plus
+                        <Link to={`/article/${article.slug}`}>
+                          Lire plus
+                        </Link>
                       </Button>
                     </div>
                   </CardContent>
@@ -319,7 +294,7 @@ const Index = () => {
       </section>
 
       {/* Latest Podcasts */}
-      <section className="py-16">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">Derniers Podcasts</h2>

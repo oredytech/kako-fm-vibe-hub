@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search, Calendar, ExternalLink, Loader2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface WordPressPost {
   id: number;
@@ -12,6 +13,7 @@ interface WordPressPost {
   excerpt: { rendered: string };
   date: string;
   link: string;
+  slug: string;
   _embedded?: {
     'wp:featuredmedia'?: Array<{
       source_url: string;
@@ -122,11 +124,12 @@ const Articles = () => {
                       <Button 
                         size="sm" 
                         variant="outline"
-                        onClick={() => window.open(article.link, '_blank')}
+                        asChild
                         className="flex items-center space-x-1"
                       >
-                        <span>Lire plus</span>
-                        <ExternalLink className="h-3 w-3" />
+                        <Link to={`/article/${article.slug}`}>
+                          <span>Lire plus</span>
+                        </Link>
                       </Button>
                     </div>
                   </CardContent>
