@@ -8,12 +8,12 @@ const Equipe = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "Sarah Mbeki",
-      role: "Directrice & Présentatrice",
-      speciality: "Actualité & Talk-shows",
+      name: "Oredy MUSANDA",
+      role: "Directeur Général",
+      speciality: "Technique et Gestion de la radio",
       image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
-      bio: "Journaliste expérimentée avec plus de 10 ans dans les médias africains. Passionnée par l'information et l'engagement citoyen.",
-      shows: ["Réveil KAKO", "KAKO Talk"],
+      bio: "Passionnant de la radio dépuis 2018, Oredy Musanda est le Directeur Général de la Kako FM dépuis Juillet 2025 ",
+      shows: ["Ondes Libre"],
       social: {
         twitter: "#",
         instagram: "#",
@@ -22,12 +22,12 @@ const Equipe = () => {
     },
     {
       id: 2,
-      name: "Alex Kouamé",
-      role: "Co-animateur & Producteur",
-      speciality: "Musique & Divertissement",
+      name: "Kethia RUGAMIKA",
+      role: "Directrice de Finance & Présentatrice",
+      speciality: "Journaliste & Chroniqueuse",
       image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
-      bio: "Producteur musical et animateur radio. Expert en musiques africaines contemporaines et découvreur de talents.",
-      shows: ["KAKO Midi", "Découverte Musicale"],
+      bio: "Finance et animatrice radio. Expert en musiques africaines contemporaines et découvreur de talents.",
+      shows: ["Autours de la Féminité", "A la une nutrition"],
       social: {
         twitter: "#",
         instagram: "#"
@@ -35,9 +35,9 @@ const Equipe = () => {
     },
     {
       id: 3,
-      name: "Dr. Fatou Diop",
-      role: "Animatrice Spécialisée",
-      speciality: "Leadership & Société",
+      name: "Gracieux BAZEGE",
+      role: "Chargé des Programmes",
+      speciality: "Programmes & Animation",
       image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
       bio: "Docteur en sociologie, militante pour l'égalité des genres et l'autonomisation des femmes africaines.",
       shows: ["Femmes Leaders", "Société & Débats"],
