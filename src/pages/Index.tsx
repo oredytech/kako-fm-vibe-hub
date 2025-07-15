@@ -126,7 +126,7 @@ const Index = () => {
                   className="h-16 md:h-24 w-auto mx-auto mb-6"
                 />
                 <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-4 md:mb-6 tracking-wider leading-tight">
-                  92.7 MHz
+                  97.2 MHz
                 </h1>
                 <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
                   KAKO FM
