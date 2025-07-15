@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Radio } from 'lucide-react';
+import { Menu, X, Radio, Headphones } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,16 @@ const Navigation = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+
+  const handleLiveRadio = () => {
+    // Trigger radio player
+    const radioPlayer = document.querySelector('audio');
+    if (radioPlayer) {
+      if (radioPlayer.paused) {
+        radioPlayer.play();
+      }
+    }
+  };
 
   return (
     <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-40">
@@ -51,11 +62,31 @@ const Navigation = () => {
                   {item.label}
                 </Link>
               ))}
+              
+              {/* Live Radio Button - Desktop */}
+              <Button 
+                onClick={handleLiveRadio}
+                size="sm" 
+                className="gradient-kako text-white hover:opacity-90 transition-opacity"
+              >
+                <Radio className="h-4 w-4 mr-2" />
+                En direct
+              </Button>
             </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Mobile controls */}
+          <div className="md:hidden flex items-center space-x-2">
+            {/* Live Radio Button - Mobile */}
+            <Button 
+              onClick={handleLiveRadio}
+              size="sm" 
+              className="gradient-kako text-white hover:opacity-90 transition-opacity"
+            >
+              <Headphones className="h-4 w-4" />
+            </Button>
+            
+            {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-kako-blue hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-kako-blue"
@@ -84,6 +115,18 @@ const Navigation = () => {
                 {item.label}
               </Link>
             ))}
+            
+            {/* Live Radio Button - Mobile Menu */}
+            <Button 
+              onClick={() => {
+                handleLiveRadio();
+                setIsOpen(false);
+              }}
+              className="w-full gradient-kako text-white hover:opacity-90 transition-opacity mt-2"
+            >
+              <Radio className="h-4 w-4 mr-2" />
+              Écouter en direct
+            </Button>
           </div>
         </div>
       )}

@@ -153,8 +153,12 @@
 }
 
 /* Article Content Styling */
+.article-content {
+  @apply max-w-none;
+}
+
 .article-content p {
-  @apply mb-6 leading-relaxed text-gray-800;
+  @apply mb-6 leading-relaxed text-gray-700 text-base;
 }
 
 .article-content h1, 
@@ -163,7 +167,7 @@
 .article-content h4, 
 .article-content h5, 
 .article-content h6 {
-  @apply font-bold text-gray-900 mt-8 mb-4;
+  @apply font-bold text-gray-900 mt-8 mb-4 leading-tight;
 }
 
 .article-content h1 {
@@ -183,20 +187,28 @@
 }
 
 .article-content blockquote {
-  @apply border-l-4 border-kako-blue pl-6 py-4 my-6 italic bg-gray-50 rounded-r-lg;
+  @apply border-l-4 border-kako-blue pl-6 py-4 my-8 italic bg-gray-50 rounded-r-lg text-gray-700;
 }
 
 .article-content ul, 
 .article-content ol {
-  @apply mb-6 pl-6;
+  @apply mb-6 pl-6 space-y-2;
 }
 
 .article-content li {
-  @apply mb-2;
+  @apply text-gray-700 leading-relaxed;
+}
+
+.article-content ul li {
+  @apply list-disc;
+}
+
+.article-content ol li {
+  @apply list-decimal;
 }
 
 .article-content img {
-  @apply rounded-lg shadow-md my-6 w-full;
+  @apply rounded-lg shadow-md my-8 w-full;
 }
 
 .article-content a {
@@ -218,16 +230,62 @@
 }
 
 .article-content table {
-  @apply w-full border-collapse border border-gray-300 my-6;
+  @apply w-full border-collapse border border-gray-300 my-8 rounded-lg overflow-hidden;
 }
 
 .article-content th, 
 .article-content td {
-  @apply border border-gray-300 px-4 py-2 text-left;
+  @apply border border-gray-300 px-4 py-3 text-left;
 }
 
 .article-content th {
-  @apply bg-gray-100 font-semibold;
+  @apply bg-gray-100 font-semibold text-gray-900;
+}
+
+.article-content td {
+  @apply text-gray-700;
+}
+
+/* Related Articles Styling */
+.related-articles {
+  @apply bg-gray-50 p-6 rounded-lg my-8 border border-gray-200;
+}
+
+.related-articles h3 {
+  @apply text-lg font-semibold text-gray-900 mb-4 flex items-center;
+}
+
+.related-articles .article-link {
+  @apply flex items-start space-x-4 p-4 bg-white rounded-lg hover:shadow-md transition-shadow cursor-pointer border border-gray-100 hover:border-gray-200;
+}
+
+.related-articles .article-link img {
+  @apply w-20 h-20 object-cover rounded-lg flex-shrink-0;
+}
+
+.related-articles .article-link h4 {
+  @apply font-medium text-gray-900 text-sm line-clamp-2 mb-1;
+}
+
+.related-articles .article-link p {
+  @apply text-xs text-gray-600 line-clamp-2;
+}
+
+/* Comment Form Styling */
+.comment-form {
+  @apply bg-white p-6 rounded-lg border border-gray-200 shadow-sm;
+}
+
+.comment-form h3 {
+  @apply text-lg font-semibold text-gray-900 mb-4;
+}
+
+.comment-form textarea {
+  @apply w-full p-3 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-kako-blue focus:border-transparent;
+}
+
+.comment-form button {
+  @apply px-6 py-2 bg-gradient-to-r from-kako-yellow to-kako-red text-white rounded-lg hover:opacity-90 transition-opacity;
 }
 
 /* Utility classes for text truncation */
@@ -250,4 +308,14 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Page Layout - Reduced top margins */
+.page-container {
+  @apply pt-16 pb-24;
+}
+
+/* Footer spacing for radio player */
+.footer-spacing {
+  @apply pb-20;
 }

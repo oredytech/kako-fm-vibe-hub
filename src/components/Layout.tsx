@@ -14,12 +14,12 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <main className="pb-20">
+      <main className="pb-24">
         {children}
       </main>
       
       {/* Footer */}
-      <footer className="bg-gray-900 text-white">
+      <footer className="bg-gray-900 text-white pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Logo & Description */}
@@ -28,7 +28,7 @@ const Layout = ({ children }: LayoutProps) => {
                 <img 
                   src="/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png" 
                   alt="KAKO FM" 
-                  className="h-12 w-auto"
+                  className="h-12 w-auto rounded-lg"
                 />
                 <div>
                   <h3 className="text-xl font-bold">KAKO FM</h3>

@@ -39,6 +39,19 @@ const VideoPlayer = () => {
     enabled: !!videoId,
   });
 
+  // Fetch suggested videos
+  const { data: suggestedVideos } = useQuery({
+    queryKey: ['suggested-videos'],
+    queryFn: async () => {
+      const API_KEY = 'AIzaSyAm1eWQTfpnRIPKIPw4HTZDOgWuciITktI';
+      const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=UCYour_Channel_ID&part=snippet&order=date&maxResults=8&type=video`;
+      
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Erreur lors du chargement des suggestions');
+      return response.json();
+    },
+  });
+
   const video = videoData?.items?.[0];
 
   const formatNumber = (num: string | number) => {
@@ -84,7 +97,7 @@ const VideoPlayer = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen pt-20 pb-8 flex items-center justify-center">
+      <div className="min-h-screen pt-16 pb-8 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-kako-blue mx-auto mb-4"></div>
           <p>Chargement de la vidéo...</p>
@@ -95,7 +108,7 @@ const VideoPlayer = () => {
 
   if (!video) {
     return (
-      <div className="min-h-screen pt-20 pb-8 flex items-center justify-center">
+      <div className="min-h-screen pt-16 pb-8 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Vidéo non trouvée</h1>
           <Button onClick={() => navigate('/videos')}>
@@ -108,7 +121,7 @@ const VideoPlayer = () => {
   }
 
   return (
-    <div className="min-h-screen pt-20 pb-8">
+    <div className="min-h-screen pt-16 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Video Player Section */}
@@ -243,6 +256,32 @@ const VideoPlayer = () => {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </div>
+
+        {/* Suggested Videos Section */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Autres vidéos</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Mock suggested videos */}
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+              <Card key={item} className="hover-lift cursor-pointer">
+                <div className="aspect-video bg-gray-200 rounded-t-lg overflow-hidden">
+                  <div className="w-full h-full bg-gradient-to-br from-kako-blue to-kako-yellow opacity-20"></div>
+                </div>
+                <CardContent className="p-4">
+                  <h4 className="font-semibold text-sm line-clamp-2 mb-2">
+                    Titre de la vidéo suggérée {item}
+                  </h4>
+                  <p className="text-xs text-gray-600 mb-1">KAKO FM</p>
+                  <div className="flex items-center space-x-2 text-xs text-gray-500">
+                    <span>120K vues</span>
+                    <span>•</span>
+                    <span>il y a 2 jours</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </div>
