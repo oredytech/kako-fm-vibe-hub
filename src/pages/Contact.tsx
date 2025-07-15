@@ -49,13 +49,13 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Téléphone",
-      details: ["+237 6XX XXX XXX", "+237 6XX XXX XXX"],
+      details: ["Direction : +243 996 886 079 (WhatsApp)", "Antenne : A venir"],
       color: "text-kako-red"
     },
     {
       icon: MapPin,
       title: "Adresse",
-      details: ["123 Avenue de la Radio", "Yaoundé, Cameroun"],
+      details: ["Ville de Goma, Commune de Karisimbi", "Blvd SAKE (Référence ENTREPÔT AKILI/Afia Bora)"],
       color: "text-kako-yellow"
     },
     {
@@ -67,7 +67,7 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { name: "WhatsApp", url: "https://wa.me/237600000000", emoji: "💬", color: "bg-green-500" },
+    { name: "WhatsApp", url: "https://wa.me/243996886079", emoji: "💬", color: "bg-green-500" },
     { name: "Facebook", url: "#", emoji: "📘", color: "bg-blue-600" },
     { name: "Twitter", url: "#", emoji: "🐦", color: "bg-blue-400" },
     { name: "Instagram", url: "#", emoji: "📷", color: "bg-pink-500" },
@@ -76,7 +76,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-20 pb-8">
+    <div className="min-h-screen pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -221,7 +221,7 @@ const Contact = () => {
                 <Button 
                   size="sm" 
                   className="bg-white text-gray-900 hover:bg-gray-100"
-                  onClick={() => window.open('https://wa.me/237600000000', '_blank')}
+                  onClick={() => window.open('https://wa.me/243996886079', '_blank')}
                 >
                   💬 Ouvrir WhatsApp
                 </Button>

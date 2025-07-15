@@ -32,33 +32,6 @@ const Soutenir = () => {
     }
   ];
 
-  const projects = [
-    {
-      title: "Nouveau Studio d'Enregistrement",
-      description: "Équipement professionnel pour améliorer la qualité de nos podcasts et émissions",
-      goal: 15000,
-      raised: 8500,
-      supporters: 127,
-      image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png"
-    },
-    {
-      title: "Émission Jeunesse Mobile",
-      description: "Van équipé pour aller à la rencontre des jeunes dans les quartiers",
-      goal: 25000,
-      raised: 12300,
-      supporters: 89,
-      image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png"
-    },
-    {
-      title: "Formation Journalisme Citoyen",
-      description: "Programme de formation gratuit pour les jeunes journalistes",
-      goal: 8000,
-      raised: 6200,
-      supporters: 156,
-      image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png"
-    }
-  ];
-
   const impact = [
     { number: "50,000+", label: "Auditeurs touchés chaque mois", icon: Users },
     { number: "25", label: "Émissions produites par semaine", icon: Target },
@@ -66,12 +39,8 @@ const Soutenir = () => {
     { number: "100+", label: "Jeunes formés cette année", icon: Lightbulb }
   ];
 
-  const getProgress = (raised: number, goal: number) => {
-    return Math.round((raised / goal) * 100);
-  };
-
   return (
-    <div className="min-h-screen pt-20 pb-8">
+    <div className="min-h-screen pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -138,44 +107,16 @@ const Soutenir = () => {
         {/* Current Projects */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Projets en cours</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <Card key={index} className="hover-lift overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover"
-                />
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                  
-                  {/* Progress */}
-                  <div className="mb-4">
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="font-medium">{project.raised.toLocaleString()}€ collectés</span>
-                      <span className="text-gray-500">{project.goal.toLocaleString()}€</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-gradient-to-r from-kako-yellow to-kako-red h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${getProgress(project.raised, project.goal)}%` }}
-                      ></div>
-                    </div>
-                    <div className="flex justify-between text-xs text-gray-500 mt-1">
-                      <span>{getProgress(project.raised, project.goal)}% atteint</span>
-                      <span>{project.supporters} contributeurs</span>
-                    </div>
-                  </div>
-                  
-                  <Button className="w-full gradient-kako text-white">
-                    <Gift className="h-4 w-4 mr-2" />
-                    Contribuer
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <Card className="text-center p-12">
+            <CardContent>
+              <Lightbulb className="h-16 w-16 mx-auto mb-6 text-kako-blue opacity-50" />
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Projets en cours de rédaction</h3>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Nous travaillons actuellement sur de nouveaux projets passionnants qui seront bientôt disponibles. 
+                Restez connectés pour découvrir comment vous pourrez nous aider à les concrétiser !
+              </p>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Impact Section */}

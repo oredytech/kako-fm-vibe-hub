@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -115,34 +116,28 @@ const Index = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div 
-          className="min-h-[70vh] flex items-center bg-cover bg-center relative"
-          style={{
-            backgroundImage: `url('/lovable-uploads/d078af5e-2324-46e2-89f6-f952389119a1.png')`
-          }}
-        >
-          <div className="absolute inset-0 gradient-kako opacity-75"></div>
+        <div className="min-h-[70vh] flex items-center bg-gradient-to-br from-kako-blue via-kako-red to-kako-yellow relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
             <div className="text-center text-white">
               <div className="animate-slide-up">
                 <img 
                   src="/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png" 
                   alt="KAKO FM" 
-                  className="h-20 md:h-32 w-auto mx-auto mb-4 md:mb-8"
+                  className="h-16 md:h-24 w-auto mx-auto mb-6"
                 />
-                <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold mb-4 md:mb-6 tracking-wider">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-4 md:mb-6 tracking-wider leading-tight">
                   92.7 MHz
                 </h1>
-                <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6">
+                <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
                   KAKO FM
                 </h2>
-                <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 opacity-90 max-w-3xl mx-auto">
+                <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 opacity-90 max-w-3xl mx-auto">
                   Radio & Télévision Kako - La voix de la jeunesse engagée
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto">
                   <Button 
                     size="lg" 
-                    className="bg-white text-gray-900 hover:bg-gray-100 px-6 md:px-8 py-3"
+                    className="bg-white text-gray-900 hover:bg-gray-100 px-4 py-3 text-sm md:text-base"
                     onClick={handleLiveRadio}
                   >
                     🎧 Écouter en direct
@@ -150,7 +145,7 @@ const Index = () => {
                   <Button 
                     size="lg" 
                     variant="outline" 
-                    className="border-white text-white hover:bg-white hover:text-gray-900 px-6 md:px-8 py-3"
+                    className="border-white text-white hover:bg-white hover:text-gray-900 px-4 py-3 text-sm md:text-base bg-transparent"
                     asChild
                   >
                     <Link to="/programmes">Voir les Programmes</Link>
@@ -393,7 +388,12 @@ const Index = () => {
             <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100" asChild>
               <Link to="/soutenir">💛 Soutenir KAKO</Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900" asChild>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent" 
+              asChild
+            >
               <Link to="/contact">📞 Nous contacter</Link>
             </Button>
           </div>
