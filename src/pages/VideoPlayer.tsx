@@ -39,15 +39,26 @@ const VideoPlayer = () => {
     enabled: !!videoId,
   });
 
-  // Fetch suggested videos
-  const { data: suggestedVideos } = useQuery({
-    queryKey: ['suggested-videos'],
+  // Fetch related videos from KAKO FM channel
+  const { data: relatedVideos } = useQuery({
+    queryKey: ['related-videos'],
     queryFn: async () => {
       const API_KEY = 'AIzaSyAm1eWQTfpnRIPKIPw4HTZDOgWuciITktI';
-      const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=UCYour_Channel_ID&part=snippet&order=date&maxResults=8&type=video`;
+      const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=UCFG9Mr12mxqs82snzRXbjeg&part=snippet,id&order=date&type=video&maxResults=12`;
       
       const response = await fetch(url);
-      if (!response.ok) throw new Error('Erreur lors du chargement des suggestions');
+      if (!response.ok) throw new Error('Erreur lors du chargement des vidéos');
+      return response.json();
+    },
+  });
+
+  // Fetch articles for sidebar
+  const { data: articles } = useQuery({
+    queryKey: ['sidebar-articles'],
+    queryFn: async () => {
+      const url = 'https://kakofm.net/wp-json/wp/v2/posts?_embed&per_page=5';
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Erreur lors du chargement des articles');
       return response.json();
     },
   });
@@ -97,7 +108,7 @@ const VideoPlayer = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen pt-16 pb-8 flex items-center justify-center">
+      <div className="min-h-screen pt-8 pb-8 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-kako-blue mx-auto mb-4"></div>
           <p>Chargement de la vidéo...</p>
@@ -108,7 +119,7 @@ const VideoPlayer = () => {
 
   if (!video) {
     return (
-      <div className="min-h-screen pt-16 pb-8 flex items-center justify-center">
+      <div className="min-h-screen pt-8 pb-8 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Vidéo non trouvée</h1>
           <Button onClick={() => navigate('/videos')}>
@@ -121,7 +132,7 @@ const VideoPlayer = () => {
   }
 
   return (
-    <div className="min-h-screen pt-16 pb-24">
+    <div className="min-h-screen pt-8 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Video Player Section */}
@@ -246,42 +257,85 @@ const VideoPlayer = () => {
             </Card>
           </div>
 
-          {/* Sidebar - Related Videos */}
+          {/* Sidebar - Articles */}
           <div className="lg:col-span-1">
             <Card>
               <CardContent className="p-6">
-                <h3 className="font-semibold text-lg mb-4">Vidéos suggérées</h3>
-                <div className="text-center py-8 text-gray-500">
-                  <p>Suggestions bientôt disponibles.</p>
-                </div>
+                <h3 className="font-semibold text-lg mb-4">Articles récents</h3>
+                {articles && articles.length > 0 ? (
+                  <div className="space-y-4">
+                    {articles.map((article: any) => (
+                      <div key={article.id} className="flex space-x-3 hover:bg-gray-50 p-2 rounded-lg cursor-pointer transition-colors">
+                        {article._embedded?.['wp:featuredmedia']?.[0] && (
+                          <img
+                            src={article._embedded['wp:featuredmedia'][0].source_url}
+                            alt={article.title.rendered}
+                            className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
+                          />
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-medium text-sm line-clamp-2 mb-1">
+                            {article.title.rendered}
+                          </h4>
+                          <p className="text-xs text-gray-600">
+                            {new Date(article.date).toLocaleDateString('fr-FR')}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-8 text-gray-500">
+                    <p>Chargement des articles...</p>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
         </div>
 
-        {/* Suggested Videos Section */}
+        {/* Related Videos Section */}
         <div className="mt-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Autres vidéos</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Autres vidéos de KAKO FM</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Mock suggested videos */}
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+            {relatedVideos?.items?.filter((item: any) => item.id.videoId !== videoId).map((item: any) => (
+              <Card key={item.id.videoId} className="hover-lift cursor-pointer" onClick={() => navigate(`/video/${item.id.videoId}`)}>
+                <div className="aspect-video bg-gray-200 rounded-t-lg overflow-hidden">
+                  <img
+                    src={item.snippet.thumbnails.medium.url}
+                    alt={item.snippet.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <CardContent className="p-4">
+                  <h4 className="font-semibold text-sm line-clamp-2 mb-2">
+                    {item.snippet.title}
+                  </h4>
+                  <p className="text-xs text-gray-600 mb-1">KAKO FM</p>
+                  <div className="flex items-center space-x-2 text-xs text-gray-500">
+                    <span>{formatDate(item.snippet.publishedAt)}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            )) || 
+            // Fallback if no videos
+            [1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
               <Card key={item} className="hover-lift cursor-pointer">
                 <div className="aspect-video bg-gray-200 rounded-t-lg overflow-hidden">
                   <div className="w-full h-full bg-gradient-to-br from-kako-blue to-kako-yellow opacity-20"></div>
                 </div>
                 <CardContent className="p-4">
                   <h4 className="font-semibold text-sm line-clamp-2 mb-2">
-                    Titre de la vidéo suggérée {item}
+                    Chargement des vidéos...
                   </h4>
                   <p className="text-xs text-gray-600 mb-1">KAKO FM</p>
                   <div className="flex items-center space-x-2 text-xs text-gray-500">
-                    <span>120K vues</span>
-                    <span>•</span>
-                    <span>il y a 2 jours</span>
+                    <span>Récent</span>
                   </div>
                 </CardContent>
               </Card>
-            ))}
+            ))
+            }
           </div>
         </div>
       </div>
