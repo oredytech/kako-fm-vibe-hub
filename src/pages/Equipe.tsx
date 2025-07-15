@@ -48,12 +48,12 @@ const Equipe = () => {
     },
     {
       id: 4,
-      name: "DJ AfroKing",
-      role: "DJ & Programmateur Musical",
-      speciality: "Musiques Africaines",
+      name: "Grâce MIDAGU",
+      role: "Marketing et Communication",
+      speciality: "Commedien",
       image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
       bio: "DJ professionnel spécialisé dans les musiques africaines. Ambassadeur de la culture afro-urbaine.",
-      shows: ["Afro Beats", "Night Vibes"],
+      shows: ["Rires Thérapeutiques"],
       social: {
         instagram: "#",
         twitter: "#"
@@ -61,12 +61,12 @@ const Equipe = () => {
     },
     {
       id: 5,
-      name: "Kevin Tech",
-      role: "Animateur Tech",
-      speciality: "Technologie & Innovation",
+      name: "Gloire BALOLAGE",
+      role: "Redacteur en Chef",
+      speciality: "Journaliste",
       image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
       bio: "Ingénieur en informatique et passionné de nouvelles technologies. Vulgarisateur tech pour le grand public.",
-      shows: ["Tech Talk", "Innovation Hub"],
+      shows: ["Informations", "Journaux"],
       social: {
         linkedin: "#",
         twitter: "#"
@@ -74,12 +74,12 @@ const Equipe = () => {
     },
     {
       id: 6,
-      name: "Lisa Morgan",
-      role: "Journaliste & Animatrice",
+      name: "Dieuveut MUBI",
+      role: "Chroniqueur",
       speciality: "Culture & Arts",
       image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
       bio: "Journaliste culturelle et critique d'art. Experte en arts contemporains africains et diaspora.",
-      shows: ["KAKO Evening", "Culture Mix"],
+      shows: ["Pop Culture"],
       social: {
         instagram: "#",
         twitter: "#",
@@ -90,20 +90,20 @@ const Equipe = () => {
 
   const technicalTeam = [
     {
-      name: "Marc Technicien",
-      role: "Ingénieur du Son",
-      icon: Headphones,
-      description: "Responsable de la qualité sonore et de la diffusion"
+      name: "Libu MANGA BLACK",
+      role: "Réalisateur",
+      icon: Camera,
+      description: "Responsable caméra"
     },
     {
-      name: "Julie Réalisatrice",
-      role: "Réalisatrice",
-      icon: Camera,
+      name: "Gabriel MUPENDA",
+      role: "Technicien Modulateur",
+      icon: Headphone,
       description: "Production et réalisation des émissions en direct"
     },
     {
-      name: "Paul Admin",
-      role: "Administrateur Système",
+      name: "Oredy MUSANDA",
+      role: "Chef Technique",
       icon: Settings,
       description: "Gestion technique et maintenance des équipements"
     }
@@ -202,17 +202,17 @@ const Equipe = () => {
         {/* Join Team Section */}
         <Card className="gradient-kako">
           <CardContent className="p-8 text-center text-white">
-            <h3 className="text-3xl font-bold mb-4">Rejoignez l'équipe KAKO FM</h3>
+            <h3 className="text-3xl font-bold mb-4">Un message à l'Equipe ?</h3>
             <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
-              Vous avez du talent et l'envie de faire partie d'une radio engagée ? 
-              Nous recherchons toujours de nouveaux talents passionnés.
+              Vous avez un mot à dire à notre Equipe ? 
+              Nous vous écouterons sans attentivement.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
-                📧 Candidature Spontanée
+                Contacter la technique
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900">
-                💼 Voir les Offres
+                Contacter la Rédaction
               </Button>
             </div>
           </CardContent>
