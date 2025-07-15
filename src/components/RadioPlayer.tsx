@@ -17,6 +17,44 @@ const RadioPlayer = () => {
     }
   }, [volume]);
 
+  // Listen for video play events and pause radio
+  useEffect(() => {
+    const handleVideoPlay = () => {
+      if (isPlaying && audioRef.current) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    };
+
+    // Listen for YouTube video events
+    window.addEventListener('message', (event) => {
+      if (event.data && typeof event.data === 'string') {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.event === 'video-play' || (data.info && data.info.playerState === 1)) {
+            handleVideoPlay();
+          }
+        } catch (e) {
+          // Ignore parsing errors
+        }
+      }
+    });
+
+    // Also check for any iframe that might contain a video
+    const observer = new MutationObserver(() => {
+      const iframes = document.querySelectorAll('iframe[src*="youtube.com/embed"]');
+      if (iframes.length > 0) {
+        handleVideoPlay();
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isPlaying]);
+
   const togglePlay = async () => {
     if (!audioRef.current) return;
 
@@ -54,7 +92,7 @@ const RadioPlayer = () => {
   };
 
   return (
-    <div className="radio-sticky p-4 shadow-lg">
+    <div className="radio-sticky p-3 md:p-4 shadow-lg">
       <audio
         ref={audioRef}
         src={streamUrl}
@@ -65,12 +103,12 @@ const RadioPlayer = () => {
       
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Info émission */}
-        <div className="flex items-center space-x-3 text-white min-w-0 flex-1">
-          <div className={`p-2 rounded-full bg-white/20 ${isPlaying ? 'animate-pulse-radio' : ''}`}>
-            <Radio className="h-5 w-5" />
+        <div className="flex items-center space-x-2 md:space-x-3 text-white min-w-0 flex-1">
+          <div className={`p-1.5 md:p-2 rounded-full bg-white/20 ${isPlaying ? 'animate-pulse-radio' : ''}`}>
+            <Radio className="h-4 w-4 md:h-5 md:w-5" />
           </div>
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-medium truncate">{currentShow}</p>
+            <p className="text-xs md:text-sm font-medium truncate">{currentShow}</p>
             <p className="text-xs opacity-80">
               {isPlaying ? '🔴 En direct' : '⏸️ En pause'}
             </p>
@@ -78,16 +116,16 @@ const RadioPlayer = () => {
         </div>
 
         {/* Contrôles */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 md:space-x-4">
           {/* Bouton Play/Pause */}
           <button
             onClick={togglePlay}
-            className="p-3 bg-white/20 hover:bg-white/30 rounded-full transition-all duration-200 hover:scale-105"
+            className="p-2 md:p-3 bg-white/20 hover:bg-white/30 rounded-full transition-all duration-200 hover:scale-105"
           >
             {isPlaying ? (
-              <Pause className="h-6 w-6 text-white" />
+              <Pause className="h-5 w-5 md:h-6 md:w-6 text-white" />
             ) : (
-              <Play className="h-6 w-6 text-white ml-0.5" />
+              <Play className="h-5 w-5 md:h-6 md:w-6 text-white ml-0.5" />
             )}
           </button>
 
@@ -98,9 +136,9 @@ const RadioPlayer = () => {
               className="p-2 hover:bg-white/20 rounded-full transition-colors"
             >
               {isMuted || volume === 0 ? (
-                <VolumeX className="h-5 w-5 text-white" />
+                <VolumeX className="h-4 w-4 md:h-5 md:w-5 text-white" />
               ) : (
-                <Volume2 className="h-5 w-5 text-white" />
+                <Volume2 className="h-4 w-4 md:h-5 md:w-5 text-white" />
               )}
             </button>
             <input
@@ -110,13 +148,13 @@ const RadioPlayer = () => {
               step="0.05"
               value={isMuted ? 0 : volume}
               onChange={handleVolumeChange}
-              className="w-20 h-2 bg-white/20 rounded-lg appearance-none slider"
+              className="w-16 md:w-20 h-2 bg-white/20 rounded-lg appearance-none slider"
             />
           </div>
 
           {/* Indicateur live */}
-          <div className="hidden md:flex items-center space-x-1 bg-white/20 px-3 py-1 rounded-full">
-            <Headphones className="h-4 w-4 text-white" />
+          <div className="hidden md:flex items-center space-x-1 bg-white/20 px-2 md:px-3 py-1 rounded-full">
+            <Headphones className="h-3 w-3 md:h-4 md:w-4 text-white" />
             <span className="text-xs font-medium text-white">LIVE</span>
           </div>
         </div>

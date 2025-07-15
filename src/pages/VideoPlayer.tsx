@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent } from '@/components/ui/card';
@@ -25,6 +24,23 @@ const VideoPlayer = () => {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
+
+  // Pause radio when video starts
+  useEffect(() => {
+    const handleVideoPlay = () => {
+      const audioPlayer = document.querySelector('audio');
+      if (audioPlayer && !audioPlayer.paused) {
+        audioPlayer.pause();
+      }
+    };
+
+    const videoIframe = document.querySelector('iframe');
+    if (videoIframe) {
+      // Listen for video play events
+      videoIframe.addEventListener('load', handleVideoPlay);
+      return () => videoIframe.removeEventListener('load', handleVideoPlay);
+    }
+  }, [videoId]);
 
   const { data: videoData, isLoading } = useQuery({
     queryKey: ['video-details', videoId],
@@ -132,9 +148,9 @@ const VideoPlayer = () => {
   }
 
   return (
-    <div className="min-h-screen pt-8 pb-24">
+    <div className="min-h-screen pt-4 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Video Player Section */}
           <div className="lg:col-span-2">
             {/* Video Player */}
@@ -152,12 +168,12 @@ const VideoPlayer = () => {
             </div>
 
             {/* Video Title */}
-            <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 leading-tight">
+            <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-4 leading-tight">
               {video.snippet.title}
             </h1>
 
             {/* Video Stats and Actions */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 space-y-4 md:space-y-0">
+            <div className="flex flex-col space-y-4 mb-6">
               <div className="flex items-center space-x-4 text-sm text-gray-600">
                 <div className="flex items-center space-x-1">
                   <Eye className="h-4 w-4" />
@@ -169,36 +185,59 @@ const VideoPlayer = () => {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-2">
+              {/* Actions - Responsive Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
                 <Button
                   variant={liked ? "default" : "outline"}
                   size="sm"
                   onClick={handleLike}
-                  className="flex items-center space-x-2"
+                  className="flex items-center justify-center space-x-1 text-xs"
                 >
                   <ThumbsUp className={`h-4 w-4 ${liked ? 'fill-current' : ''}`} />
-                  <span>{formatNumber(video.statistics.likeCount)}</span>
+                  <span className="hidden sm:inline">{formatNumber(video.statistics.likeCount)}</span>
                 </Button>
 
                 <Button
                   variant={disliked ? "default" : "outline"}
                   size="sm"
                   onClick={handleDislike}
+                  className="flex items-center justify-center"
                 >
                   <ThumbsDown className={`h-4 w-4 ${disliked ? 'fill-current' : ''}`} />
                 </Button>
 
-                <Button variant="outline" size="sm" onClick={handleShare}>
-                  <Share2 className="h-4 w-4 mr-2" />
-                  Partager
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={handleShare}
+                  className="flex items-center justify-center space-x-1 text-xs"
+                >
+                  <Share2 className="h-4 w-4" />
+                  <span className="hidden sm:inline">Partager</span>
                 </Button>
 
-                <Button variant="outline" size="sm">
-                  <Download className="h-4 w-4 mr-2" />
-                  Télécharger
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="flex items-center justify-center space-x-1 text-xs"
+                >
+                  <Download className="h-4 w-4" />
+                  <span className="hidden sm:inline">Télécharger</span>
                 </Button>
 
-                <Button variant="outline" size="sm">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="flex items-center justify-center"
+                >
+                  <Flag className="h-4 w-4" />
+                </Button>
+
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="flex items-center justify-center"
+                >
                   <MoreHorizontal className="h-4 w-4" />
                 </Button>
               </div>
@@ -206,17 +245,17 @@ const VideoPlayer = () => {
 
             {/* Channel Info and Description */}
             <Card>
-              <CardContent className="p-6">
+              <CardContent className="p-4 md:p-6">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-gradient-to-r from-kako-yellow to-kako-red rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">K</span>
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-kako-yellow to-kako-red rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-sm md:text-lg">K</span>
                     </div>
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-2">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
                       <h3 className="font-semibold text-gray-900">KAKO FM</h3>
-                      <Button size="sm" className="gradient-kako text-white">
+                      <Button size="sm" className="gradient-kako text-white self-start">
                         S'abonner
                       </Button>
                     </div>
@@ -246,7 +285,7 @@ const VideoPlayer = () => {
 
             {/* Comments Section */}
             <Card className="mt-6">
-              <CardContent className="p-6">
+              <CardContent className="p-4 md:p-6">
                 <h3 className="font-semibold text-lg mb-4">
                   {formatNumber(video.statistics.commentCount)} commentaires
                 </h3>
@@ -260,7 +299,7 @@ const VideoPlayer = () => {
           {/* Sidebar - Articles */}
           <div className="lg:col-span-1">
             <Card>
-              <CardContent className="p-6">
+              <CardContent className="p-4 md:p-6">
                 <h3 className="font-semibold text-lg mb-4">Articles récents</h3>
                 {articles && articles.length > 0 ? (
                   <div className="space-y-4">
@@ -295,9 +334,9 @@ const VideoPlayer = () => {
         </div>
 
         {/* Related Videos Section */}
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Autres vidéos de KAKO FM</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-8 lg:mt-12">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6">Autres vidéos de KAKO FM</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {relatedVideos?.items?.filter((item: any) => item.id.videoId !== videoId).map((item: any) => (
               <Card key={item.id.videoId} className="hover-lift cursor-pointer" onClick={() => navigate(`/video/${item.id.videoId}`)}>
                 <div className="aspect-video bg-gray-200 rounded-t-lg overflow-hidden">
@@ -307,7 +346,7 @@ const VideoPlayer = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <CardContent className="p-4">
+                <CardContent className="p-3 md:p-4">
                   <h4 className="font-semibold text-sm line-clamp-2 mb-2">
                     {item.snippet.title}
                   </h4>
@@ -324,7 +363,7 @@ const VideoPlayer = () => {
                 <div className="aspect-video bg-gray-200 rounded-t-lg overflow-hidden">
                   <div className="w-full h-full bg-gradient-to-br from-kako-blue to-kako-yellow opacity-20"></div>
                 </div>
-                <CardContent className="p-4">
+                <CardContent className="p-3 md:p-4">
                   <h4 className="font-semibold text-sm line-clamp-2 mb-2">
                     Chargement des vidéos...
                   </h4>

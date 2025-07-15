@@ -90,6 +90,15 @@ const Index = () => {
     }
   ];
 
+  const handleLiveRadio = () => {
+    const audioPlayer = document.querySelector('audio');
+    if (audioPlayer) {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+      }
+    }
+  };
+
   const formatDuration = (publishedAt: string) => {
     const date = new Date(publishedAt);
     const now = new Date();
@@ -119,25 +128,32 @@ const Index = () => {
                 <img 
                   src="/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png" 
                   alt="KAKO FM" 
-                  className="h-32 w-auto mx-auto mb-8"
+                  className="h-20 md:h-32 w-auto mx-auto mb-4 md:mb-8"
                 />
-                <h1 className="text-5xl md:text-7xl font-bold mb-6">
-                  KAKO FM
+                <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold mb-4 md:mb-6 tracking-wider">
+                  92.7 MHz
                 </h1>
-                <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-3xl mx-auto">
+                <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6">
+                  KAKO FM
+                </h2>
+                <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 opacity-90 max-w-3xl mx-auto">
                   Radio & Télévision Kako - La voix de la jeunesse engagée
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-3">
+                  <Button 
+                    size="lg" 
+                    className="bg-white text-gray-900 hover:bg-gray-100 px-6 md:px-8 py-3"
+                    onClick={handleLiveRadio}
+                  >
                     🎧 Écouter en direct
                   </Button>
                   <Button 
                     size="lg" 
                     variant="outline" 
-                    className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3"
+                    className="border-white text-white hover:bg-white hover:text-gray-900 px-6 md:px-8 py-3"
                     asChild
                   >
-                    <Link to="/programmes">Voir le Programme</Link>
+                    <Link to="/programmes">Voir les Programmes</Link>
                   </Button>
                 </div>
               </div>
@@ -147,11 +163,11 @@ const Index = () => {
       </section>
 
       {/* Latest Articles */}
-      <section className="py-16 bg-white">
+      <section className="py-8 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Derniers Articles</h2>
-            <Button variant="outline" asChild>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 md:mb-12 gap-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Derniers Articles</h2>
+            <Button variant="outline" asChild className="shrink-0">
               <Link to="/articles" className="flex items-center space-x-2">
                 <span>Voir tous</span>
                 <ArrowRight className="h-4 w-4" />
@@ -160,11 +176,11 @@ const Index = () => {
           </div>
 
           {articlesLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {[...Array(6)].map((_, i) => (
                 <Card key={i} className="hover-lift">
                   <div className="h-48 bg-gray-200 animate-pulse"></div>
-                  <CardContent className="p-6">
+                  <CardContent className="p-4 md:p-6">
                     <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
                     <div className="h-4 bg-gray-200 rounded animate-pulse w-3/4"></div>
                   </CardContent>
@@ -172,7 +188,7 @@ const Index = () => {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {articles?.slice(0, 6).map((article) => (
                 <Card key={article.id} className="hover-lift overflow-hidden">
                   {article._embedded?.['wp:featuredmedia']?.[0] && (
@@ -184,8 +200,8 @@ const Index = () => {
                       />
                     </div>
                   )}
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg mb-2 line-clamp-2">
+                  <CardContent className="p-4 md:p-6">
+                    <h3 className="font-semibold text-base md:text-lg mb-2 line-clamp-2">
                       {article.title.rendered}
                     </h3>
                     <div 
@@ -217,11 +233,11 @@ const Index = () => {
       </section>
 
       {/* Latest Videos */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-8 md:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Dernières Vidéos</h2>
-            <Button variant="outline" asChild>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 md:mb-12 gap-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Dernières Vidéos</h2>
+            <Button variant="outline" asChild className="shrink-0">
               <Link to="/videos" className="flex items-center space-x-2">
                 <span>Voir toutes</span>
                 <ArrowRight className="h-4 w-4" />
@@ -230,11 +246,11 @@ const Index = () => {
           </div>
 
           {videosLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {[...Array(3)].map((_, i) => (
                 <Card key={i} className="hover-lift">
                   <div className="h-48 bg-gray-200 animate-pulse"></div>
-                  <CardContent className="p-6">
+                  <CardContent className="p-4 md:p-6">
                     <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
                     <div className="h-4 bg-gray-200 rounded animate-pulse w-3/4"></div>
                   </CardContent>
@@ -242,7 +258,7 @@ const Index = () => {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {videos?.map((video) => (
                 <Card key={video.id.videoId} className="hover-lift overflow-hidden">
                   <div className="relative group">
@@ -268,8 +284,8 @@ const Index = () => {
                     </div>
                   </div>
                   
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg mb-2 line-clamp-2">
+                  <CardContent className="p-4 md:p-6">
+                    <h3 className="font-semibold text-base md:text-lg mb-2 line-clamp-2">
                       {video.snippet.title}
                     </h3>
                     <p className="text-gray-600 text-sm mb-4 line-clamp-2">
@@ -300,7 +316,7 @@ const Index = () => {
       </section>
 
       {/* Latest Podcasts */}
-      <section className="py-16 bg-white">
+      <section className="py-8 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">Derniers Podcasts</h2>
@@ -365,7 +381,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 gradient-kako">
+      <section className="py-8 md:py-16 gradient-kako">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-white mb-6">
             Rejoignez la communauté KAKO FM
