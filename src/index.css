@@ -142,6 +142,16 @@
   80%, 100% { content: '...'; }
 }
 
+/* Logo Rounded Styles */
+.logo-rounded {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.logo-rounded img {
+  border-radius: 12px;
+}
+
 /* Article Content Styling */
 .article-content p {
   @apply mb-6 leading-relaxed text-gray-800;

@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Play, Clock, Calendar, Eye, ExternalLink, Loader2 } from 'lucide-react';
@@ -30,6 +31,7 @@ interface YouTubeResponse {
 }
 
 const Videos = () => {
+  const navigate = useNavigate();
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   const { data: videos, isLoading, error } = useQuery({
@@ -55,6 +57,10 @@ const Videos = () => {
     if (diffDays < 7) return `Il y a ${diffDays} jours`;
     if (diffDays < 30) return `Il y a ${Math.ceil(diffDays / 7)} semaines`;
     return `Il y a ${Math.ceil(diffDays / 30)} mois`;
+  };
+
+  const handleWatchVideo = (videoId: string) => {
+    navigate(`/video/${videoId}`);
   };
 
   return (
@@ -126,7 +132,7 @@ const Videos = () => {
                     <Button
                       size="lg"
                       className="bg-white/90 text-gray-900 hover:bg-white"
-                      onClick={() => setSelectedVideo(video.id.videoId)}
+                      onClick={() => handleWatchVideo(video.id.videoId)}
                     >
                       <Play className="h-5 w-5 mr-2" />
                       Regarder
@@ -159,7 +165,7 @@ const Videos = () => {
                     <Button
                       size="sm"
                       className="flex-1 gradient-kako text-white"
-                      onClick={() => setSelectedVideo(video.id.videoId)}
+                      onClick={() => handleWatchVideo(video.id.videoId)}
                     >
                       <Play className="h-4 w-4 mr-1" />
                       Voir ici

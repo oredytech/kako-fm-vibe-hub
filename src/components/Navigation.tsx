@@ -26,11 +26,13 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img 
-              src="/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png" 
-              alt="KAKO FM" 
-              className="h-10 w-auto"
-            />
+            <div className="logo-rounded">
+              <img 
+                src="/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png" 
+                alt="KAKO FM" 
+                className="h-10 w-auto"
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
