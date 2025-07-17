@@ -5,108 +5,50 @@ import { Button } from '@/components/ui/button';
 import { Mail, Twitter, Instagram, Linkedin, Mic, Headphones, Camera, Settings } from 'lucide-react';
 
 const Equipe = () => {
-  const teamMembers = [
+  // Direction
+  const direction = [
     {
       id: 1,
       name: "Oredy MUSANDA",
       role: "Directeur Général",
-      speciality: "Technique et Gestion de la radio",
-      image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
-      bio: "Passionnant de la radio dépuis 2018, Oredy Musanda est le Directeur Général de la Kako FM dépuis Juillet 2025 ",
-      shows: ["Ondes Libre"],
-      social: {
-        twitter: "#",
-        instagram: "#",
-        linkedin: "#"
-      }
+      image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png"
     },
     {
       id: 2,
       name: "Kethia RUGAMIKA",
-      role: "Directrice de Finance & Présentatrice",
-      speciality: "Journaliste & Chroniqueuse",
-      image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
-      bio: "Finance et animatrice radio. Expert en musiques africaines contemporaines et découvreur de talents.",
-      shows: ["Autours de la Féminité", "A la une nutrition"],
-      social: {
-        twitter: "#",
-        instagram: "#"
-      }
+      role: "Directrice Financière, Journaliste et Animatrice",
+      image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png"
     },
     {
       id: 3,
       name: "Gracieux BAZEGE",
-      role: "Chargé des Programmes",
-      speciality: "Programmes & Animation",
-      image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
-      bio: "Docteur en sociologie, militante pour l'égalité des genres et l'autonomisation des femmes africaines.",
-      shows: ["Femmes Leaders", "Société & Débats"],
-      social: {
-        linkedin: "#",
-        twitter: "#"
-      }
-    },
-    {
-      id: 4,
-      name: "Grâce MIDAGU",
-      role: "Marketing et Communication",
-      speciality: "Commedien",
-      image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
-      bio: "DJ professionnel spécialisé dans les musiques africaines. Ambassadeur de la culture afro-urbaine.",
-      shows: ["Rires Thérapeutiques"],
-      social: {
-        instagram: "#",
-        twitter: "#"
-      }
-    },
-    {
-      id: 5,
-      name: "Gloire BALOLAGE",
-      role: "Redacteur en Chef",
-      speciality: "Journaliste",
-      image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
-      bio: "Ingénieur en informatique et passionné de nouvelles technologies. Vulgarisateur tech pour le grand public.",
-      shows: ["Informations", "Journaux"],
-      social: {
-        linkedin: "#",
-        twitter: "#"
-      }
-    },
-    {
-      id: 6,
-      name: "Dieuveut MUBI",
-      role: "Chroniqueur",
-      speciality: "Culture & Arts",
-      image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
-      bio: "Journaliste culturelle et critique d'art. Experte en arts contemporains africains et diaspora.",
-      shows: ["Pop Culture"],
-      social: {
-        instagram: "#",
-        twitter: "#",
-        linkedin: "#"
-      }
+      role: "Chargé des Programmes et animateur",
+      image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png"
     }
   ];
 
-  const technicalTeam = [
-    {
-      name: "Libu MANGA BLACK",
-      role: "Réalisateur",
-      icon: Camera,
-      description: "Responsable caméra"
-    },
-    {
-      name: "Gabriel MUPENDA",
-      role: "Technicien Modulateur",
-      icon: Headphone,
-      description: "Production et réalisation des émissions en direct"
-    },
-    {
-      name: "Oredy MUSANDA",
-      role: "Chef Technique",
-      icon: Settings,
-      description: "Gestion technique et maintenance des équipements"
-    }
+  // Animateurs et chroniqueurs
+  const animateurs = [
+    { name: "Samuel MATABARO", role: "Animateur et Chroniqueur" },
+    { name: "Ismael BENJAMIN", role: "Animateur et Chroniqueur" },
+    { name: "Grace MIDAGU", role: "Marketing" },
+    { name: "Dieuveut MUBI", role: "Animateur et Chroniqueur" },
+    { name: "Ricardo OLENGA", role: "Animateur et Chroniqueur" },
+    { name: "Boniface MALIMINGI", role: "Animateur et Chroniqueur" }
+  ];
+
+  // Journalistes
+  const journalistes = [
+    { name: "Gloire BALOLAGE", role: "Rédacteur en chef" },
+    { name: "Patience NGORORA", role: "Journaliste" },
+    { name: "Dieuaime RUGO", role: "Journaliste" },
+    { name: "Fanny SHAMABA", role: "Journaliste" }
+  ];
+
+  // Techniciens
+  const techniciens = [
+    { name: "Gabriel MUPENDA", role: "Modulateur", icon: Settings },
+    { name: "Libu MANGA BLACK", role: "Caméra", icon: Camera }
   ];
 
   const getSocialIcon = (platform: string) => {
@@ -129,11 +71,11 @@ const Equipe = () => {
           </p>
         </div>
 
-        {/* Main Team */}
+        {/* Direction */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Équipe d'Animation</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member) => (
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Direction</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {direction.map((member) => (
               <Card key={member.id} className="hover-lift overflow-hidden">
                 <div className="relative">
                   <img
@@ -146,45 +88,55 @@ const Equipe = () => {
                   </div>
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                  <p className="text-kako-blue font-medium mb-2">{member.role}</p>
-                  <p className="text-sm text-gray-600 mb-3">{member.speciality}</p>
-                  <p className="text-gray-700 text-sm mb-4 line-clamp-3">{member.bio}</p>
-                  
-                  {/* Shows */}
-                  <div className="mb-4">
-                    <p className="text-xs font-medium text-gray-500 mb-2">ÉMISSIONS :</p>
-                    <div className="flex flex-wrap gap-1">
-                      {member.shows.map((show, index) => (
-                        <span key={index} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-                          {show}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Social Links */}
-                  <div className="flex space-x-3">
-                    {Object.entries(member.social).map(([platform, url]) => {
-                      const IconComponent = getSocialIcon(platform);
-                      return (
-                        <Button key={platform} size="sm" variant="outline" className="p-2">
-                          <IconComponent className="h-4 w-4" />
-                        </Button>
-                      );
-                    })}
-                  </div>
+                  <h3 className="text-xl font-bold mb-2">{member.name}</h3>
+                  <p className="text-kako-blue font-medium">{member.role}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
         </div>
 
-        {/* Technical Team */}
+        {/* Animateurs et Chroniqueurs */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Équipe Technique</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {technicalTeam.map((member, index) => (
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Animateurs et Chroniqueurs</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {animateurs.map((member, index) => (
+              <Card key={index} className="hover-lift text-center">
+                <CardContent className="p-6">
+                  <div className="bg-gradient-to-r from-kako-yellow to-kako-red p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <Headphones className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2">{member.name}</h3>
+                  <p className="text-kako-blue font-medium text-sm">{member.role}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Journalistes */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Journalistes</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {journalistes.map((member, index) => (
+              <Card key={index} className="hover-lift text-center">
+                <CardContent className="p-6">
+                  <div className="bg-gradient-to-r from-kako-yellow to-kako-red p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <Mic className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2">{member.name}</h3>
+                  <p className="text-kako-blue font-medium text-sm">{member.role}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Techniciens */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Techniciens</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {techniciens.map((member, index) => (
               <Card key={index} className="hover-lift text-center">
                 <CardContent className="p-8">
                   <div className="bg-gradient-to-r from-kako-yellow to-kako-red p-4 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
@@ -192,7 +144,6 @@ const Equipe = () => {
                   </div>
                   <h3 className="text-xl font-bold mb-2">{member.name}</h3>
                   <p className="text-kako-blue font-medium mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm">{member.description}</p>
                 </CardContent>
               </Card>
             ))}
