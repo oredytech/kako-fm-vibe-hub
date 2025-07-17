@@ -1,15 +1,17 @@
-
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calendar, Clock, Eye, Users, Play, ExternalLink, Download, Headphones, Phone, Mail, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
 interface WordPressPost {
   id: number;
-  title: { rendered: string };
-  excerpt: { rendered: string };
+  title: {
+    rendered: string;
+  };
+  excerpt: {
+    rendered: string;
+  };
   date: string;
   link: string;
   slug: string;
@@ -20,7 +22,6 @@ interface WordPressPost {
     }>;
   };
 }
-
 interface YouTubeVideo {
   id: {
     videoId: string;
@@ -36,61 +37,58 @@ interface YouTubeVideo {
     };
   };
 }
-
 const Index = () => {
-  const { data: articles, isLoading: articlesLoading } = useQuery({
+  const {
+    data: articles,
+    isLoading: articlesLoading
+  } = useQuery({
     queryKey: ['articles', 'featured'],
     queryFn: async () => {
       const response = await fetch('https://kakofm.net/wp-json/wp/v2/posts?_embed&per_page=6');
       if (!response.ok) throw new Error('Erreur lors du chargement des articles');
       return response.json() as Promise<WordPressPost[]>;
-    },
+    }
   });
-
-  const { data: videos, isLoading: videosLoading } = useQuery({
+  const {
+    data: videos,
+    isLoading: videosLoading
+  } = useQuery({
     queryKey: ['youtube-videos-home'],
     queryFn: async () => {
       const API_KEY = 'AIzaSyAm1eWQTfpnRIPKIPw4HTZDOgWuciITktI';
       const CHANNEL_ID = 'UCFG9Mr12mxqs82snzRXbjeg';
       const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&type=video&maxResults=3`;
-      
       const response = await fetch(url);
       if (!response.ok) throw new Error('Erreur lors du chargement des vidéos');
       const data = await response.json();
       return data.items as YouTubeVideo[];
-    },
-  });
-
-  const podcasts = [
-    {
-      id: 1,
-      title: "KAKO Talk - L'actualité décryptée",
-      description: "Chaque semaine, notre équipe décrypte l'actualité politique, sociale et culturelle.",
-      duration: "45 min",
-      date: "2024-01-10",
-      imageUrl: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
-      category: "Actualité"
-    },
-    {
-      id: 2,
-      title: "Musique & Culture",
-      description: "Découverte de nouveaux artistes et analyse des tendances musicales.",
-      duration: "35 min",
-      date: "2024-01-08",
-      imageUrl: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
-      category: "Culture"
-    },
-    {
-      id: 3,
-      title: "Jeunesse & Engagement",
-      description: "Focus sur les initiatives de la jeunesse africaine.",
-      duration: "40 min",
-      date: "2024-01-05",
-      imageUrl: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
-      category: "Société"
     }
-  ];
-
+  });
+  const podcasts = [{
+    id: 1,
+    title: "KAKO Talk - L'actualité décryptée",
+    description: "Chaque semaine, notre équipe décrypte l'actualité politique, sociale et culturelle.",
+    duration: "45 min",
+    date: "2024-01-10",
+    imageUrl: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
+    category: "Actualité"
+  }, {
+    id: 2,
+    title: "Musique & Culture",
+    description: "Découverte de nouveaux artistes et analyse des tendances musicales.",
+    duration: "35 min",
+    date: "2024-01-08",
+    imageUrl: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
+    category: "Culture"
+  }, {
+    id: 3,
+    title: "Jeunesse & Engagement",
+    description: "Focus sur les initiatives de la jeunesse africaine.",
+    duration: "40 min",
+    date: "2024-01-05",
+    imageUrl: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
+    category: "Société"
+  }];
   const handleLiveRadio = () => {
     const audioPlayer = document.querySelector('audio');
     if (audioPlayer) {
@@ -99,32 +97,24 @@ const Index = () => {
       }
     }
   };
-
   const formatDuration = (publishedAt: string) => {
     const date = new Date(publishedAt);
     const now = new Date();
     const diffTime = Math.abs(now.getTime() - date.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
     if (diffDays === 1) return 'Hier';
     if (diffDays < 7) return `Il y a ${diffDays} jours`;
     if (diffDays < 30) return `Il y a ${Math.ceil(diffDays / 7)} semaines`;
     return `Il y a ${Math.ceil(diffDays / 30)} mois`;
   };
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="min-h-[70vh] flex items-center bg-gradient-to-br from-kako-blue via-kako-red to-kako-yellow relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
             <div className="text-center text-white">
               <div className="animate-slide-up">
-                <img 
-                  src="/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png" 
-                  alt="KAKO FM" 
-                  className="h-16 md:h-24 w-auto mx-auto mb-6"
-                />
+                
                 <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-4 md:mb-6 tracking-wider leading-tight">
                   97.2 MHz
                 </h1>
@@ -135,19 +125,10 @@ const Index = () => {
                   Radio & Télévision Kako - La voix de la jeunesse engagée
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto">
-                  <Button 
-                    size="lg" 
-                    className="bg-white text-gray-900 hover:bg-gray-100 px-4 py-3 text-sm md:text-base"
-                    onClick={handleLiveRadio}
-                  >
+                  <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 px-4 py-3 text-sm md:text-base" onClick={handleLiveRadio}>
                     🎧 Écouter en direct
                   </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
-                    className="border-white text-white hover:bg-white hover:text-gray-900 px-4 py-3 text-sm md:text-base bg-transparent"
-                    asChild
-                  >
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900 px-4 py-3 text-sm md:text-base bg-transparent" asChild>
                     <Link to="/programmes">Voir les Programmes</Link>
                   </Button>
                 </div>
@@ -170,60 +151,39 @@ const Index = () => {
             </Button>
           </div>
 
-          {articlesLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {[...Array(6)].map((_, i) => (
-                <Card key={i} className="hover-lift">
+          {articlesLoading ? <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {[...Array(6)].map((_, i) => <Card key={i} className="hover-lift">
                   <div className="h-48 bg-gray-200 animate-pulse"></div>
                   <CardContent className="p-4 md:p-6">
                     <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
                     <div className="h-4 bg-gray-200 rounded animate-pulse w-3/4"></div>
                   </CardContent>
-                </Card>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {articles?.slice(0, 6).map((article) => (
-                <Card key={article.id} className="hover-lift overflow-hidden">
-                  {article._embedded?.['wp:featuredmedia']?.[0] && (
-                    <div className="h-48 overflow-hidden">
-                      <img
-                        src={article._embedded['wp:featuredmedia'][0].source_url}
-                        alt={article._embedded['wp:featuredmedia'][0].alt_text || article.title.rendered}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                  )}
+                </Card>)}
+            </div> : <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {articles?.slice(0, 6).map(article => <Card key={article.id} className="hover-lift overflow-hidden">
+                  {article._embedded?.['wp:featuredmedia']?.[0] && <div className="h-48 overflow-hidden">
+                      <img src={article._embedded['wp:featuredmedia'][0].source_url} alt={article._embedded['wp:featuredmedia'][0].alt_text || article.title.rendered} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+                    </div>}
                   <CardContent className="p-4 md:p-6">
                     <h3 className="font-semibold text-base md:text-lg mb-2 line-clamp-2">
                       {article.title.rendered}
                     </h3>
-                    <div 
-                      className="text-gray-600 text-sm mb-4 line-clamp-3"
-                      dangerouslySetInnerHTML={{ 
-                        __html: article.excerpt.rendered.replace(/<[^>]*>/g, '') 
-                      }}
-                    />
+                    <div className="text-gray-600 text-sm mb-4 line-clamp-3" dangerouslySetInnerHTML={{
+                __html: article.excerpt.rendered.replace(/<[^>]*>/g, '')
+              }} />
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-500">
                         {new Date(article.date).toLocaleDateString('fr-FR')}
                       </span>
-                      <Button 
-                        size="sm" 
-                        variant="outline"
-                        asChild
-                      >
+                      <Button size="sm" variant="outline" asChild>
                         <Link to={`/article/${article.slug}`}>
                           Lire plus
                         </Link>
                       </Button>
                     </div>
                   </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
+                </Card>)}
+            </div>}
         </div>
       </section>
 
@@ -240,34 +200,20 @@ const Index = () => {
             </Button>
           </div>
 
-          {videosLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {[...Array(3)].map((_, i) => (
-                <Card key={i} className="hover-lift">
+          {videosLoading ? <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {[...Array(3)].map((_, i) => <Card key={i} className="hover-lift">
                   <div className="h-48 bg-gray-200 animate-pulse"></div>
                   <CardContent className="p-4 md:p-6">
                     <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
                     <div className="h-4 bg-gray-200 rounded animate-pulse w-3/4"></div>
                   </CardContent>
-                </Card>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {videos?.map((video) => (
-                <Card key={video.id.videoId} className="hover-lift overflow-hidden">
+                </Card>)}
+            </div> : <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {videos?.map(video => <Card key={video.id.videoId} className="hover-lift overflow-hidden">
                   <div className="relative group">
-                    <img
-                      src={video.snippet.thumbnails.medium.url}
-                      alt={video.snippet.title}
-                      className="w-full h-48 object-cover"
-                    />
+                    <img src={video.snippet.thumbnails.medium.url} alt={video.snippet.title} className="w-full h-48 object-cover" />
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <Button
-                        size="lg"
-                        className="bg-white/90 text-gray-900 hover:bg-white"
-                        onClick={() => window.open(`https://www.youtube.com/watch?v=${video.id.videoId}`, '_blank')}
-                      >
+                      <Button size="lg" className="bg-white/90 text-gray-900 hover:bg-white" onClick={() => window.open(`https://www.youtube.com/watch?v=${video.id.videoId}`, '_blank')}>
                         <Play className="h-5 w-5 mr-2" />
                         Regarder
                       </Button>
@@ -294,19 +240,13 @@ const Index = () => {
                       </div>
                     </div>
                     
-                    <Button
-                      size="sm"
-                      className="w-full gradient-kako text-white"
-                      onClick={() => window.open(`https://www.youtube.com/watch?v=${video.id.videoId}`, '_blank')}
-                    >
+                    <Button size="sm" className="w-full gradient-kako text-white" onClick={() => window.open(`https://www.youtube.com/watch?v=${video.id.videoId}`, '_blank')}>
                       <Play className="h-4 w-4 mr-1" />
                       Regarder
                     </Button>
                   </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
+                </Card>)}
+            </div>}
         </div>
       </section>
 
@@ -324,16 +264,11 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {podcasts.map((podcast) => (
-              <Card key={podcast.id} className="hover-lift">
+            {podcasts.map(podcast => <Card key={podcast.id} className="hover-lift">
                 <CardContent className="p-6">
                   <div className="flex gap-4 mb-4">
                     <div className="w-20 h-20 flex-shrink-0">
-                      <img
-                        src={podcast.imageUrl}
-                        alt={podcast.title}
-                        className="w-full h-full object-cover rounded-lg"
-                      />
+                      <img src={podcast.imageUrl} alt={podcast.title} className="w-full h-full object-cover rounded-lg" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-2">
@@ -369,8 +304,7 @@ const Index = () => {
                     </Button>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -388,19 +322,12 @@ const Index = () => {
             <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100" asChild>
               <Link to="/soutenir">💛 Soutenir KAKO</Link>
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent" 
-              asChild
-            >
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent" asChild>
               <Link to="/contact">📞 Nous contacter</Link>
             </Button>
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
