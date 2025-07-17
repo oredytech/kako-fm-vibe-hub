@@ -42,7 +42,7 @@ const Equipe = () => {
     { name: "Gloire BALOLAGE", role: "Rédacteur en chef" },
     { name: "Patience NGORORA", role: "Journaliste" },
     { name: "Dieuaime RUGO", role: "Journaliste" },
-    { name: "Fanny SHAMABA", role: "Journaliste" }
+    { name: "Fanny SHAMAMBA", role: "Journaliste" }
   ];
 
   // Techniciens
