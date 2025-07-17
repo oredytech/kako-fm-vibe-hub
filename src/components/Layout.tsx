@@ -40,9 +40,8 @@ const Layout = ({ children }: LayoutProps) => {
                 la culture et l'engagement social en République Démocratique du Congo.
               </p>
               <div className="flex space-x-4">
-                <Button size="sm" className="gradient-kako text-white">
-                  <Headphones className="h-4 w-4 mr-2" />
-                  Écouter en direct
+                <Button size="sm" className="gradient-kako text-white" asChild>
+                  <Link to="/a-propos">À propos</Link>
                 </Button>
               </div>
             </div>
