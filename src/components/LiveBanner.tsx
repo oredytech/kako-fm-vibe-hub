@@ -99,24 +99,24 @@ const LiveBanner = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-kako-red to-kako-yellow text-white py-2 px-4">
+    <div className="bg-gradient-to-r from-kako-red to-kako-yellow text-white py-1 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-center space-x-4 text-sm font-medium">
-          <div className="flex items-center space-x-2">
-            <Radio className="h-4 w-4 animate-pulse" />
-            <span>À L'ANTENNE</span>
+        <div className="flex items-center justify-center space-x-2 sm:space-x-4 text-xs sm:text-sm font-medium">
+          <div className="flex items-center space-x-1 sm:space-x-2">
+            <Radio className="h-3 w-3 sm:h-4 sm:w-4 animate-pulse" />
+            <span className="text-xs sm:text-sm">À L'ANTENNE</span>
           </div>
-          <div className="hidden sm:block text-lg font-bold">
+          <div className="hidden sm:block text-sm sm:text-lg font-bold">
             {currentProgram}
           </div>
-          <div className="flex items-center space-x-2">
-            <Clock className="h-4 w-4" />
-            <span>{currentTime}</span>
+          <div className="flex items-center space-x-1 sm:space-x-2">
+            <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
+            <span className="text-xs sm:text-sm">{currentTime}</span>
           </div>
         </div>
         {/* Mobile version - show program name on separate line */}
-        <div className="sm:hidden text-center mt-1">
-          <div className="text-lg font-bold">
+        <div className="sm:hidden text-center">
+          <div className="text-sm font-bold truncate">
             {currentProgram}
           </div>
         </div>
