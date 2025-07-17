@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Navigation from './Navigation';
+import LiveBanner from './LiveBanner';
 import RadioPlayer from './RadioPlayer';
 import { Button } from '@/components/ui/button';
 import { Headphones, Phone, Mail } from 'lucide-react';
@@ -14,6 +15,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+      <LiveBanner />
       <main className="pb-24">
         {children}
       </main>
