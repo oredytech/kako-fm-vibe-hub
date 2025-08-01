@@ -1,15 +1,28 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2, VolumeX, Radio, Headphones } from 'lucide-react';
+import { getCurrentProgram } from '@/data/scheduleData';
 
 const RadioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(0.7);
-  const [currentShow, setCurrentShow] = useState('KAKO FM - En Direct');
+  const [currentShow, setCurrentShow] = useState('');
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const streamUrl = "https://stream.zeno.fm/qdgq60qkb3gvv";
+
+  // Update current show every minute
+  useEffect(() => {
+    const updateCurrentShow = () => {
+      setCurrentShow(getCurrentProgram());
+    };
+    
+    updateCurrentShow();
+    const interval = setInterval(updateCurrentShow, 60000); // Update every minute
+    
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (audioRef.current) {

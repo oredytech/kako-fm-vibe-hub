@@ -68,14 +68,14 @@ const Layout = ({ children }: LayoutProps) => {
                   <Phone className="h-4 w-4 text-kako-yellow" />
                   <div>
                     <p className="text-sm text-gray-300">Direction</p>
-                    <p className="text-white">+243 996 886 079</p>
+                    <p className="text-white">direction@kakofm.net</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="h-4 w-4 text-kako-yellow" />
                   <div>
                     <p className="text-sm text-gray-300">Antenne</p>
-                    <p className="text-white">À venir</p>
+                    <p className="text-white">+243 979 130 601</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">

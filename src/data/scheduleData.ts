@@ -14,7 +14,7 @@ export const scheduleData: ScheduleSlot[] = [
   {
     time: "05h00-06h00",
     lundi: "PREDICATION",
-    mardi: "PREDICATION", 
+    mardi: "PREDICATION",
     mercredi: "PREDICATION",
     jeudi: "PREDICATION",
     vendredi: "PREDICATION",
@@ -25,7 +25,7 @@ export const scheduleData: ScheduleSlot[] = [
     time: "06h00-06h20",
     lundi: "CANTIQUES",
     mardi: "CANTIQUES",
-    mercredi: "CANTIQUES", 
+    mercredi: "CANTIQUES",
     jeudi: "CANTIQUES",
     vendredi: "CANTIQUES",
     samedi: "CANTIQUES",
@@ -36,7 +36,7 @@ export const scheduleData: ScheduleSlot[] = [
     lundi: "COMMUNIQUE",
     mardi: "COMMUNIQUE",
     mercredi: "COMMUNIQUE",
-    jeudi: "COMMUNIQUE", 
+    jeudi: "COMMUNIQUE",
     vendredi: "COMMUNIQUE",
     samedi: "COMMUNIQUE",
     dimanche: "COMMUNIQUE"
@@ -47,7 +47,7 @@ export const scheduleData: ScheduleSlot[] = [
     mardi: "METEO",
     mercredi: "METEO",
     jeudi: "METEO",
-    vendredi: "METEO", 
+    vendredi: "METEO",
     samedi: "METEO",
     dimanche: "GOSPEL"
   },
@@ -153,12 +153,22 @@ export const scheduleData: ScheduleSlot[] = [
   },
   {
     time: "09h10-09h13",
-    lundi: "SAUTI LA MZEE",
-    mardi: "SAUTI LA MZEE",
-    mercredi: "SAUTI LA MZEE",
-    jeudi: "SAUTI LA MZEE",
-    vendredi: "SAUTI LA MZEE",
-    samedi: "SAUTI LA MZEE",
+    lundi: "SAUTI YA MZEE",
+    mardi: "SAUTI YA MZEE",
+    mercredi: "SAUTI YA MZEE",
+    jeudi: "SAUTI YA MZEE",
+    vendredi: "SAUTI YA MZEE",
+    samedi: "SAUTI YA MZEE",
+    dimanche: "MESSE MOBILE"
+  },
+  {
+    time: "09h13-09h25",
+    lundi: "BURUDANI ZA NYUMBANI",
+    mardi: "BURUDANI ZA NYUMBANI",
+    mercredi: "BURUDANI ZA NYUMBANI",
+    jeudi: "BURUDANI ZA NYUMBANI",
+    vendredi: "BURUDANI ZA NYUMBANI",
+    samedi: "BURUDANI ZA NYUMBANI",
     dimanche: "MESSE MOBILE"
   },
   {
@@ -172,7 +182,7 @@ export const scheduleData: ScheduleSlot[] = [
     dimanche: "MESSE MOBILE"
   },
   {
-    time: "09h30-09h40",
+    time: "09h27-09h30",
     lundi: "DETENTE",
     mardi: "DETENTE",
     mercredi: "DETENTE",
@@ -182,23 +192,33 @@ export const scheduleData: ScheduleSlot[] = [
     dimanche: "MESSE MOBILE"
   },
   {
+    time: "09h30-09h40",
+    lundi: "MUSIQUE CONSCIENTE",
+    mardi: "MUSIQUE CONSCIENTE",
+    mercredi: "MUSIQUE CONSCIENTE",
+    jeudi: "MUSIQUE CONSCIENTE",
+    vendredi: "MUSIQUE CONSCIENTE",
+    samedi: "MUSIQUE CONSCIENTE",
+    dimanche: "MESSE MOBILE"
+  },
+  {
     time: "09h40-10h00",
     lundi: "TUJADILI BIASHARA",
     mardi: "MAFUGO NA MILIMO",
     mercredi: "ECHO DU QUARTIER",
     jeudi: "MAFUGO NA MILIMO",
     vendredi: "TUJADILI BIASHARA",
-    samedi: "",
+    samedi: "KAKO WEEKEND",
     dimanche: "MESSE MOBILE"
   },
   {
     time: "10h00-10h30",
     lundi: "SPORT PLANETE",
     mardi: "ARCHIVES DU MONDE",
-    mercredi: "SPORT PLANETTE",
-    jeudi: "SPORT PLANETTE",
-    vendredi: "SPORT PLANETTE",
-    samedi: "SPORT PLANETTE",
+    mercredi: "SPORT PLANETE",
+    jeudi: "SPORT PLANETE",
+    vendredi: "SPORT PLANETE",
+    samedi: "KAKO WEEKEND",
     dimanche: "MESSE MOBILE"
   },
   {
@@ -208,7 +228,7 @@ export const scheduleData: ScheduleSlot[] = [
     mercredi: "DETENTE",
     jeudi: "DETENTE",
     vendredi: "DETENTE",
-    samedi: "DETENTE",
+    samedi: "KAKO WEEKEND",
     dimanche: "MESSE MOBILE"
   },
   {
@@ -218,7 +238,7 @@ export const scheduleData: ScheduleSlot[] = [
     mercredi: "BULT EC-ENV",
     jeudi: "BULT EC-ENV",
     vendredi: "BULT EC-ENV",
-    samedi: "BULT EC-ENV",
+    samedi: "KAKO WEEKEND",
     dimanche: "MESSE MOBILE"
   },
   {
@@ -228,7 +248,7 @@ export const scheduleData: ScheduleSlot[] = [
     mercredi: "DETENTE",
     jeudi: "DETENTE",
     vendredi: "DETENTE",
-    samedi: "DETENTE",
+    samedi: "KAKO WEEKEND",
     dimanche: "MESSE MOBILE"
   },
   {
@@ -238,7 +258,7 @@ export const scheduleData: ScheduleSlot[] = [
     mercredi: "BULLETIN INFO",
     jeudi: "BULLETIN INFO",
     vendredi: "BULLETIN INFO",
-    samedi: "BULLETIN INFO",
+    samedi: "KAKO WEEKEND",
     dimanche: "MESSE MOBILE"
   },
   {
@@ -248,7 +268,7 @@ export const scheduleData: ScheduleSlot[] = [
     mercredi: "DETENTE",
     jeudi: "DETENTE",
     vendredi: "DETENTE",
-    samedi: "DETENTE",
+    samedi: "KAKO WEEKEND",
     dimanche: "MESSE MOBILE"
   },
   {
@@ -264,7 +284,7 @@ export const scheduleData: ScheduleSlot[] = [
   {
     time: "11h30-11h55",
     lundi: "AUTOUR DE LA FEMINITE",
-    mardi: "",
+    mardi: "MODE VERT",
     mercredi: "LIBRE ANTENNE",
     jeudi: "A LA UNE",
     vendredi: "NUTRITION",
@@ -283,22 +303,22 @@ export const scheduleData: ScheduleSlot[] = [
   },
   {
     time: "12h00-12h30",
-    lundi: "JOURNAL PARL EN SWAHILI",
-    mardi: "JOURNAL PARL EN SWAHILI",
-    mercredi: "JOURNAL PARL EN SWAHILI",
-    jeudi: "JOURNAL PARL EN SWAHILI",
-    vendredi: "JOURNAL PARL EN SWAHILI",
-    samedi: "JOURNAL PARL EN SWAHILI",
+    lundi: "JOURNAL PARLE EN SWAHILI",
+    mardi: "JOURNAL PARLE EN SWAHILI",
+    mercredi: "JOURNAL PARLE EN SWAHILI",
+    jeudi: "JOURNAL PARLE EN SWAHILI",
+    vendredi: "JOURNAL PARLE EN SWAHILI",
+    samedi: "JOURNAL PARLE EN SWAHILI",
     dimanche: "MIROIR DU PASSE"
   },
   {
     time: "12h30-13h00",
-    lundi: "JOURNAL PARL EN FRANCAIS",
-    mardi: "JOURNAL PARL EN FRANCAIS",
-    mercredi: "JOURNAL PARL EN FRANCAIS",
-    jeudi: "JOURNAL PARL EN FRANCAIS",
-    vendredi: "JOURNAL PARL EN FRANCAIS",
-    samedi: "JOURNAL PARL EN FRANCAIS",
+    lundi: "JOURNAL PARLE EN FRANCAIS",
+    mardi: "JOURNAL PARLE EN FRANCAIS",
+    mercredi: "JOURNAL PARLE EN FRANCAIS",
+    jeudi: "JOURNAL PARLE EN FRANCAIS",
+    vendredi: "JOURNAL PARLE EN FRANCAIS",
+    samedi: "JOURNAL PARLE EN FRANCAIS",
     dimanche: "MIROIR DU PASSE"
   },
   {
@@ -368,8 +388,8 @@ export const scheduleData: ScheduleSlot[] = [
     mercredi: "BULLETIN ECO+ENVIRO",
     jeudi: "UNIVERS CLASSIQUE",
     vendredi: "BULLETIN ECO+ENVIRO",
-    samedi: "",
-    dimanche: ""
+    samedi: "KAKO WEEKEND",
+    dimanche: "VIBE DU SOIR"
   },
   {
     time: "15h00-15h15",
@@ -397,7 +417,7 @@ export const scheduleData: ScheduleSlot[] = [
     mardi: "POP CULTURE",
     mercredi: "CONTOUR + MUSIQUES LOCALES",
     jeudi: "2GO MAKAMBO",
-    vendredi: "",
+    vendredi: "TRIBUNE ECO",
     samedi: "KAKO WEEKEND",
     dimanche: "VIBE DU SOIR"
   },
@@ -407,7 +427,7 @@ export const scheduleData: ScheduleSlot[] = [
     mardi: "DETENTE",
     mercredi: "CONTOUR + DEGO MAKAMBO",
     jeudi: "2GO MAKAMBO",
-    vendredi: "",
+    vendredi: "TRIBUNE ECO",
     samedi: "KAKO WEEKEND",
     dimanche: "VIBE DU SOIR"
   },
@@ -417,7 +437,7 @@ export const scheduleData: ScheduleSlot[] = [
     mardi: "DETENTE",
     mercredi: "DEGO MAKAMBO",
     jeudi: "DETENTE",
-    vendredi: "",
+    vendredi: "DETENTE",
     samedi: "KAKO WEEKEND",
     dimanche: "VIBE DU SOIR"
   },
@@ -426,7 +446,7 @@ export const scheduleData: ScheduleSlot[] = [
     lundi: "PUBLICITE",
     mardi: "PUBLICITE",
     mercredi: "PUBLICITE",
-    jeudi: "DEGO MAKAMBO",
+    jeudi: "PUBLICITE",
     vendredi: "PUBLICITE",
     samedi: "PUBLICITE",
     dimanche: "PUBLICITE"
@@ -459,7 +479,7 @@ export const scheduleData: ScheduleSlot[] = [
     jeudi: "AUTOUR DE LA FEMINITE REDIF",
     vendredi: "DEGO MAKAMBO REDIF",
     samedi: "POP CULTURE REDIF",
-    dimanche: ""
+    dimanche: "VIBE DU SOIR"
   },
   {
     time: "19h00-20h00",
@@ -467,9 +487,9 @@ export const scheduleData: ScheduleSlot[] = [
     mardi: "UNIVERS CLASSIC REDIF",
     mercredi: "CITOYEN DU MONDE REDIF",
     jeudi: "DEGO MAKAMBO REDIF",
-    vendredi: "",
+    vendredi: "TRIBUNE ECO REDIF",
     samedi: "CONTOUR + REDIF",
-    dimanche: ""
+    dimanche: "VIBE DU SOIR"
   },
   {
     time: "20h00-20h15",
@@ -485,7 +505,7 @@ export const scheduleData: ScheduleSlot[] = [
     time: "20h15-20h30",
     lundi: "GOMA MUSIC",
     mardi: "ARCHIVES DU MONDE",
-    mercredi: "RIRE THÉRAPEUTIQUE",
+    mercredi: "RIRE THERAPEUTIQUE",
     jeudi: "VIBE DU MOMENT REDIF",
     vendredi: "GOMA MUSIC",
     samedi: "GOMA MUSIC",
@@ -495,10 +515,10 @@ export const scheduleData: ScheduleSlot[] = [
     time: "20h30-21h30",
     lundi: "AFIA KWETU",
     mardi: "ARCHIVES DU MONDE",
-    mercredi: "RIRE THÉRAPEUTIQUE",
+    mercredi: "RIRE THERAPEUTIQUE",
     jeudi: "VIBE DU MOMENT REDIF",
-    vendredi: "",
-    samedi: "",
+    vendredi: "AFIA KWETU",
+    samedi: "GOMA MUSIC",
     dimanche: "DETENTE"
   },
   {
