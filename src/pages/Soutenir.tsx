@@ -2,16 +2,29 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Heart, Users, Target, Gift, Star, ArrowRight, CheckCircle, Lightbulb } from 'lucide-react';
+import { Heart, Users, Target, Gift, Star, ArrowRight, CheckCircle, Lightbulb, Phone, Mail } from 'lucide-react';
 
 const Soutenir = () => {
+  const handleDonation = (type: string) => {
+    // Redirection vers PayPal ou système de paiement
+    window.open('https://www.paypal.com/donate', '_blank');
+  };
+
+  const handleContact = () => {
+    window.location.href = 'mailto:direction@kakofm.net?subject=Soutien KAKO FM';
+  };
+
+  const handleCallAntenne = () => {
+    window.location.href = 'tel:+243979130601';
+  };
+
   const supportWays = [
     {
       icon: Heart,
       title: "Don ponctuel",
       description: "Soutenez nos projets avec un don unique",
       amount: "À partir de 5€",
-      color: "bg-kako-red",
+      color: "bg-kako-red text-white",
       benefits: ["Soutien direct aux émissions", "Reconnaissance publique", "Newsletter exclusive"]
     },
     {
@@ -19,7 +32,7 @@ const Soutenir = () => {
       title: "Membre mensuel",
       description: "Devenez membre supporter avec un don mensuel",
       amount: "10€/mois",
-      color: "bg-kako-blue",
+      color: "bg-kako-blue text-white",
       benefits: ["Accès à du contenu exclusif", "Invitations aux événements", "Badge membre sur les réseaux"]
     },
     {
@@ -61,10 +74,10 @@ const Soutenir = () => {
               l'engagement citoyen et l'épanouissement de la jeunesse africaine.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 px-8">
+              <Button size="lg" onClick={() => handleDonation('hero')} className="bg-white text-gray-900 hover:bg-gray-100 px-8">
                 💳 Faire un don maintenant
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900 px-8">
+              <Button size="lg" variant="outline" onClick={handleContact} className="border-white text-white hover:bg-white hover:text-gray-900 px-8">
                 📋 En savoir plus
               </Button>
             </div>
@@ -79,7 +92,7 @@ const Soutenir = () => {
               <Card key={index} className="hover-lift text-center">
                 <CardContent className="p-8">
                   <div className={`${way.color} p-4 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center`}>
-                    <way.icon className="h-10 w-10 text-white" />
+                    <way.icon className={`h-10 w-10 ${way.title === 'Parrain Premium' ? 'text-black' : 'text-white'}`} />
                   </div>
                   <h3 className="text-2xl font-bold mb-3">{way.title}</h3>
                   <p className="text-gray-600 mb-4">{way.description}</p>
@@ -95,7 +108,7 @@ const Soutenir = () => {
                     ))}
                   </div>
                   
-                  <Button className="w-full gradient-kako text-white">
+                  <Button onClick={() => handleDonation(way.title)} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                     Choisir cette option
                   </Button>
                 </CardContent>
@@ -107,14 +120,51 @@ const Soutenir = () => {
         {/* Current Projects */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Projets en cours</h2>
-          <Card className="text-center p-12">
-            <CardContent>
-              <Lightbulb className="h-16 w-16 mx-auto mb-6 text-kako-blue opacity-50" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Projets en cours de rédaction</h3>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Nous travaillons actuellement sur de nouveaux projets passionnants qui seront bientôt disponibles. 
-                Restez connectés pour découvrir comment vous pourrez nous aider à les concrétiser !
-              </p>
+          <Card className="hover-lift">
+            <CardContent className="p-8">
+              <div className="flex items-start gap-6">
+                <div className="bg-kako-blue p-4 rounded-full flex-shrink-0">
+                  <Lightbulb className="h-8 w-8 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">KAKO FM – Une Voix pour les Invisibles</h3>
+                  <p className="text-lg font-semibold text-kako-blue mb-4">
+                    Sensibilisation à l'épilepsie à travers la radio communautaire à Goma, RDC
+                  </p>
+                  <div className="text-gray-600 space-y-3 mb-6">
+                    <p>
+                      <strong>Objectif :</strong> Lutter contre la stigmatisation des personnes vivant avec l'épilepsie 
+                      à Goma et dans la région du Nord-Kivu, en utilisant la radio communautaire comme vecteur 
+                      d'information, d'éducation et de mobilisation sociale.
+                    </p>
+                    <p>
+                      <strong>Activités principales :</strong>
+                    </p>
+                    <ul className="list-disc ml-6 space-y-1">
+                      <li>Production et diffusion de 4 émissions radio dédiées à la sensibilisation</li>
+                      <li>Création de 2 spots audio de sensibilisation</li>
+                      <li>Formation de 10 journalistes/animateurs sur le traitement éthique des sujets de santé</li>
+                      <li>Création de 6 vidéos courtes et 10 visuels pour les réseaux sociaux</li>
+                      <li>Organisation d'un événement public de sensibilisation</li>
+                    </ul>
+                    <p>
+                      <strong>Budget nécessaire :</strong> 4 500 USD
+                    </p>
+                    <p>
+                      <strong>Impact attendu :</strong> 50 000 personnes sensibilisées, réduction de la stigmatisation, 
+                      amélioration de l'accès aux soins pour les personnes épileptiques.
+                    </p>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button onClick={() => handleDonation('epilepsie')} className="bg-kako-blue text-white hover:bg-kako-blue/90">
+                      💛 Soutenir ce projet
+                    </Button>
+                    <Button variant="outline" onClick={handleContact}>
+                      📄 Télécharger le dossier complet
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -204,11 +254,16 @@ const Soutenir = () => {
               plus forte et plus impactante pour notre communauté.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="gradient-kako text-white px-8">
+              <Button size="lg" onClick={() => handleDonation('final')} className="bg-primary text-primary-foreground hover:bg-primary/90 px-8">
                 💛 Faire un don
               </Button>
-              <Button size="lg" variant="outline" className="px-8">
-                📞 Nous contacter
+              <Button size="lg" variant="outline" onClick={handleContact} className="px-8">
+                <Mail className="h-4 w-4 mr-2" />
+                Nous contacter
+              </Button>
+              <Button size="lg" variant="outline" onClick={handleCallAntenne} className="px-8">
+                <Phone className="h-4 w-4 mr-2" />
+                Antenne: +243 979 130 601
               </Button>
             </div>
           </CardContent>
