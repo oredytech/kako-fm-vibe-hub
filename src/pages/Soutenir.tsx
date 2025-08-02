@@ -46,9 +46,9 @@ const Soutenir = () => {
   ];
 
   const impact = [
-    { number: "50,000+", label: "Auditeurs touchés chaque mois", icon: Users },
-    { number: "25", label: "Émissions produites par semaine", icon: Target },
-    { number: "12", label: "Pays où nous sommes écoutés", icon: Star },
+    { number: "Monde entier", label: "Écoutés via notre site web", icon: Users },
+    { number: "+174 km²", label: "Couverture en FM", icon: Target },
+    { number: "25", label: "Émissions produites par semaine", icon: Star },
     { number: "100+", label: "Jeunes formés cette année", icon: Lightbulb }
   ];
 
@@ -159,7 +159,10 @@ const Soutenir = () => {
                     <Button onClick={() => handleDonation('epilepsie')} className="bg-kako-blue text-white hover:bg-kako-blue/90">
                       💛 Soutenir ce projet
                     </Button>
-                    <Button variant="outline" onClick={handleContact}>
+                    <Button 
+                      variant="outline" 
+                      onClick={() => window.open('https://kakofm.net/wp-content/uploads/2025/08/Projet-KAKO-FM-–-Une-Voix-pour-les-Invisibles-complet.pdf', '_blank')}
+                    >
                       📄 Télécharger le dossier complet
                     </Button>
                   </div>
