@@ -1,59 +1,58 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Heart, Users, Target, Gift, Star, ArrowRight, CheckCircle, Lightbulb, Phone, Mail } from 'lucide-react';
-
 const Soutenir = () => {
   const handleDonation = (type: string) => {
     // Redirection vers PayPal ou système de paiement
     window.open('https://www.paypal.com/donate', '_blank');
   };
-
   const handleContact = () => {
     window.location.href = 'mailto:direction@kakofm.net?subject=Soutien KAKO FM';
   };
-
   const handleCallAntenne = () => {
     window.location.href = 'tel:+243979130601';
   };
-
-  const supportWays = [
-    {
-      icon: Heart,
-      title: "Don ponctuel",
-      description: "Soutenez nos projets avec un don unique",
-      amount: "À partir de 5€",
-      color: "bg-kako-red text-white",
-      benefits: ["Soutien direct aux émissions", "Reconnaissance publique", "Newsletter exclusive"]
-    },
-    {
-      icon: Users,
-      title: "Membre mensuel",
-      description: "Devenez membre supporter avec un don mensuel",
-      amount: "10€/mois",
-      color: "bg-kako-blue text-white",
-      benefits: ["Accès à du contenu exclusif", "Invitations aux événements", "Badge membre sur les réseaux"]
-    },
-    {
-      icon: Star,
-      title: "Parrain Premium",
-      description: "Parrainez une émission ou un projet spécifique",
-      amount: "50€/mois",
-      color: "bg-kako-yellow text-black",
-      benefits: ["Mention à l'antenne", "Rencontre avec l'équipe", "Rapport d'impact trimestriel"]
-    }
-  ];
-
-  const impact = [
-    { number: "Monde entier", label: "Écoutés via notre site web", icon: Users },
-    { number: "+174 km²", label: "Couverture en FM", icon: Target },
-    { number: "25", label: "Émissions produites par semaine", icon: Star },
-    { number: "100+", label: "Jeunes formés cette année", icon: Lightbulb }
-  ];
-
-  return (
-    <div className="min-h-screen pt-16 pb-8">
+  const supportWays = [{
+    icon: Heart,
+    title: "Don ponctuel",
+    description: "Soutenez nos projets avec un don unique",
+    amount: "À partir de 5€",
+    color: "bg-kako-red text-white",
+    benefits: ["Soutien direct aux émissions", "Reconnaissance publique", "Newsletter exclusive"]
+  }, {
+    icon: Users,
+    title: "Membre mensuel",
+    description: "Devenez membre supporter avec un don mensuel",
+    amount: "10€/mois",
+    color: "bg-kako-blue text-white",
+    benefits: ["Accès à du contenu exclusif", "Invitations aux événements", "Badge membre sur les réseaux"]
+  }, {
+    icon: Star,
+    title: "Parrain Premium",
+    description: "Parrainez une émission ou un projet spécifique",
+    amount: "50€/mois",
+    color: "bg-kako-yellow text-black",
+    benefits: ["Mention à l'antenne", "Rencontre avec l'équipe", "Rapport d'impact trimestriel"]
+  }];
+  const impact = [{
+    number: "Monde entier",
+    label: "Écoutés via notre site web",
+    icon: Users
+  }, {
+    number: "+174 km²",
+    label: "Couverture en FM",
+    icon: Target
+  }, {
+    number: "25",
+    label: "Émissions produites par semaine",
+    icon: Star
+  }, {
+    number: "100+",
+    label: "Jeunes formés cette année",
+    icon: Lightbulb
+  }];
+  return <div className="min-h-screen pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -77,7 +76,7 @@ const Soutenir = () => {
               <Button size="lg" onClick={() => handleDonation('hero')} className="bg-white text-gray-900 hover:bg-gray-100 px-8">
                 💳 Faire un don maintenant
               </Button>
-              <Button size="lg" variant="outline" onClick={handleContact} className="border-white text-white hover:bg-white hover:text-gray-900 px-8">
+              <Button size="lg" variant="outline" onClick={handleContact} className="border-white text-white hover:text-gray-900 px-8 bg-white/0">
                 📋 En savoir plus
               </Button>
             </div>
@@ -88,8 +87,7 @@ const Soutenir = () => {
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Comment nous soutenir</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {supportWays.map((way, index) => (
-              <Card key={index} className="hover-lift text-center">
+            {supportWays.map((way, index) => <Card key={index} className="hover-lift text-center">
                 <CardContent className="p-8">
                   <div className={`${way.color} p-4 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center`}>
                     <way.icon className={`h-10 w-10 ${way.title === 'Parrain Premium' ? 'text-black' : 'text-white'}`} />
@@ -100,20 +98,17 @@ const Soutenir = () => {
                   
                   {/* Benefits */}
                   <div className="space-y-2 mb-6">
-                    {way.benefits.map((benefit, idx) => (
-                      <div key={idx} className="flex items-center text-sm text-gray-600">
+                    {way.benefits.map((benefit, idx) => <div key={idx} className="flex items-center text-sm text-gray-600">
                         <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
                         {benefit}
-                      </div>
-                    ))}
+                      </div>)}
                   </div>
                   
                   <Button onClick={() => handleDonation(way.title)} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                     Choisir cette option
                   </Button>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
 
@@ -159,10 +154,7 @@ const Soutenir = () => {
                     <Button onClick={() => handleDonation('epilepsie')} className="bg-kako-blue text-white hover:bg-kako-blue/90">
                       💛 Soutenir ce projet
                     </Button>
-                    <Button 
-                      variant="outline" 
-                      onClick={() => window.open('https://kakofm.net/wp-content/uploads/2025/08/Projet-KAKO-FM-–-Une-Voix-pour-les-Invisibles-complet.pdf', '_blank')}
-                    >
+                    <Button variant="outline" onClick={() => window.open('https://kakofm.net/wp-content/uploads/2025/08/Projet-KAKO-FM-–-Une-Voix-pour-les-Invisibles-complet.pdf', '_blank')}>
                       📄 Télécharger le dossier complet
                     </Button>
                   </div>
@@ -176,15 +168,13 @@ const Soutenir = () => {
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Notre Impact</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {impact.map((stat, index) => (
-              <Card key={index} className="text-center gradient-kako-soft">
+            {impact.map((stat, index) => <Card key={index} className="text-center gradient-kako-soft">
                 <CardContent className="p-6">
                   <stat.icon className="h-8 w-8 mx-auto mb-3 text-kako-blue" />
                   <div className="text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
                   <p className="text-gray-600 text-sm">{stat.label}</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
 
@@ -272,8 +262,6 @@ const Soutenir = () => {
           </CardContent>
         </Card>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Soutenir;
