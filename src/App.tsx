@@ -16,6 +16,9 @@ import Equipe from "./pages/Equipe";
 import Contact from "./pages/Contact";
 import Soutenir from "./pages/Soutenir";
 import APropos from "./pages/APropos";
+import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
+import ConditionsUtilisation from "./pages/ConditionsUtilisation";
+import MentionsLegales from "./pages/MentionsLegales";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -46,6 +49,9 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/soutenir" element={<Soutenir />} />
             <Route path="/a-propos" element={<APropos />} />
+            <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+            <Route path="/conditions-utilisation" element={<ConditionsUtilisation />} />
+            <Route path="/mentions-legales" element={<MentionsLegales />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>

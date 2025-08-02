@@ -1,14 +1,23 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://kakofm.net/sitemap.xml
+
+# Specific crawl directives for important content
+Allow: /articles
+Allow: /videos
+Allow: /podcasts
+Allow: /programmes
+Allow: /equipe
+Allow: /contact
+Allow: /soutenir
+Allow: /a-propos
+
+# Legal pages
+Allow: /politique-confidentialite
+Allow: /conditions-utilisation
+Allow: /mentions-legales
+
+# Crawl delay (optional)
+Crawl-delay: 1
