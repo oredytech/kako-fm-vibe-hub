@@ -134,7 +134,8 @@ const PolitiqueConfidentialite = () => {
               </p>
               <div className="text-muted-foreground space-y-2">
                 <p><strong>Email :</strong> direction@kakofm.net</p>
-                <p><strong>Téléphone :</strong> +243 979 130 601</p>
+                <p><strong>Direction :</strong> +243 996 886 079</p>
+                <p><strong>Antenne :</strong> +243 979 130 601</p>
                 <p><strong>Adresse :</strong> Ville de Goma, Commune de Karisimbi, Blvd SAKE (Référence ENTREPÔT AKIFAR/Afia Bora)</p>
               </div>
             </section>

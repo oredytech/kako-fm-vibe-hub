@@ -19,7 +19,8 @@ const MentionsLegales = () => {
                 <p><strong>Statut :</strong> Station de radio et télévision</p>
                 <p><strong>Adresse :</strong> Ville de Goma, Commune de Karisimbi, Blvd SAKE (Référence ENTREPÔT AKIFAR/Afia Bora)</p>
                 <p><strong>Pays :</strong> République Démocratique du Congo</p>
-                <p><strong>Téléphone :</strong> +243 979 130 601</p>
+                <p><strong>Direction :</strong> +243 996 886 079</p>
+                <p><strong>Antenne :</strong> +243 979 130 601</p>
                 <p><strong>Email :</strong> direction@kakofm.net</p>
                 <p><strong>Site web :</strong> www.kakofm.net</p>
               </div>
@@ -33,14 +34,16 @@ const MentionsLegales = () => {
               </div>
             </section>
 
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">3. Hébergement du site</h2>
-              <div className="text-muted-foreground space-y-2">
-                <p><strong>Hébergeur :</strong> Lovable</p>
-                <p><strong>Site web :</strong> https://lovable.dev</p>
-                <p>Le site est hébergé sur une plateforme cloud sécurisée avec des serveurs distribués géographiquement.</p>
-              </div>
-            </section>
+              <section>
+                <h2 className="text-2xl font-semibold mb-4">3. Hébergement et développement du site</h2>
+                <div className="text-muted-foreground space-y-2">
+                  <p><strong>Développement :</strong> Site créé avec Lovable (https://lovable.dev)</p>
+                  <p><strong>Nom de domaine :</strong> Hébergé chez LWS</p>
+                  <p><strong>Hébergement du site :</strong> Serveurs Netlify</p>
+                  <p><strong>APIs utilisées :</strong> WordPress (articles), YouTube (vidéos)</p>
+                  <p>Le site utilise des services tiers pour la diffusion de contenu et bénéficie d'une infrastructure cloud sécurisée.</p>
+                </div>
+              </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">4. Propriété intellectuelle</h2>
@@ -104,7 +107,8 @@ const MentionsLegales = () => {
               </p>
               <div className="text-muted-foreground space-y-2">
                 <p><strong>Par email :</strong> direction@kakofm.net</p>
-                <p><strong>Par téléphone :</strong> +243 979 130 601</p>
+                <p><strong>Direction :</strong> +243 996 886 079</p>
+                <p><strong>Antenne :</strong> +243 979 130 601</p>
                 <p><strong>Par courrier :</strong> KAKO FM, Ville de Goma, Commune de Karisimbi, Blvd SAKE (Référence ENTREPÔT AKIFAR/Afia Bora), République Démocratique du Congo</p>
               </div>
             </section>
