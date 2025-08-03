@@ -4,6 +4,7 @@ import Navigation from './Navigation';
 import LiveBanner from './LiveBanner';
 import RadioPlayer from './RadioPlayer';
 import Footer from './Footer';
+import NotificationBanner from './NotificationBanner';
 import { Button } from '@/components/ui/button';
 
 interface LayoutProps {
@@ -15,6 +16,7 @@ const Layout = ({ children }: LayoutProps) => {
     <div className="min-h-screen bg-background">
       <Navigation />
       <LiveBanner />
+      <NotificationBanner />
       <main className="pb-24">
         {children}
       </main>

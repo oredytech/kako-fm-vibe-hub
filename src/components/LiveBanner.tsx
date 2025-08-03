@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Radio, Clock } from 'lucide-react';
 import { getCurrentProgram } from '@/data/scheduleData';
+import { useNotifications } from '@/hooks/useNotifications';
 
 const LiveBanner = () => {
   const [currentProgram, setCurrentProgram] = useState<string>('');
   const [currentTime, setCurrentTime] = useState<string>('');
+  const [lastNotifiedProgram, setLastNotifiedProgram] = useState<string>('');
+  const { showNotification, canNotify } = useNotifications();
 
   useEffect(() => {
     const updateCurrentProgram = () => {
@@ -14,7 +17,21 @@ const LiveBanner = () => {
         minute: '2-digit',
         timeZone: 'Africa/Lubumbashi' 
       }));
-      setCurrentProgram(getCurrentProgram());
+      
+      const newProgram = getCurrentProgram();
+      
+      // Notifier si le programme a changé et qu'on peut notifier
+      if (newProgram !== lastNotifiedProgram && canNotify && newProgram !== 'DETENTE') {
+        showNotification({
+          title: 'Nouveau programme sur KAKO FM',
+          body: `${newProgram} vient de commencer`,
+          tag: 'program-change',
+          icon: '/favicon.ico'
+        });
+        setLastNotifiedProgram(newProgram);
+      }
+      
+      setCurrentProgram(newProgram);
     };
 
     // Update immediately
