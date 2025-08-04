@@ -86,7 +86,7 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Contact Form */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 lg:sticky lg:top-20">
             <Card className="hover-lift">
               <CardHeader>
                 <CardTitle className="flex items-center text-2xl">
@@ -185,7 +185,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-6 lg:sticky lg:top-20">
+          <div className="space-y-6">
             {/* Contact Details */}
             <Card className="hover-lift">
               <CardHeader>

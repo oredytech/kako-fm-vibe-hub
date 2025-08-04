@@ -41,7 +41,7 @@ const LiveBanner = () => {
     const interval = setInterval(updateCurrentProgram, 60000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [canNotify, showNotification, lastNotifiedProgram]);
 
   return (
     <div className="bg-gradient-to-r from-kako-red to-kako-yellow text-white py-1 px-4">
