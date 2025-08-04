@@ -14,7 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      content_notifications: {
+        Row: {
+          content_id: string
+          content_title: string
+          content_type: string
+          id: string
+          sent_at: string
+        }
+        Insert: {
+          content_id: string
+          content_title: string
+          content_type: string
+          id?: string
+          sent_at?: string
+        }
+        Update: {
+          content_id?: string
+          content_title?: string
+          content_type?: string
+          id?: string
+          sent_at?: string
+        }
+        Relationships: []
+      }
+      newsletters: {
+        Row: {
+          email: string
+          id: string
+          is_active: boolean
+          subscribed_at: string
+          updated_at: string
+        }
+        Insert: {
+          email: string
+          id?: string
+          is_active?: boolean
+          subscribed_at?: string
+          updated_at?: string
+        }
+        Update: {
+          email?: string
+          id?: string
+          is_active?: boolean
+          subscribed_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
