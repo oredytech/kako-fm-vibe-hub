@@ -1,20 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin } from 'lucide-react';
-
 const Footer = () => {
-  return (
-    <footer className="bg-gray-900 text-white mb-20">
+  return <footer className="bg-gray-900 text-white mb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo et Description */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <img 
-                src="/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png" 
-                alt="KAKO FM" 
-                className="h-10 w-auto"
-              />
+              <img src="/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png" alt="KAKO FM" className="h-10 w-auto" />
               <span className="text-xl font-bold">KAKO FM</span>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
@@ -117,14 +111,10 @@ const Footer = () => {
             <p className="text-gray-400 text-sm">
               © 2025 KAKO FM. Tous droits réservés.
             </p>
-            <p className="text-gray-400 text-sm">
-              Couverture FM : +174 km² • Écoute mondiale via kakofm.net
-            </p>
+            <p className="text-gray-400 text-sm">Couverture FM : +174 km² • </p>
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
