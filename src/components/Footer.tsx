@@ -4,6 +4,7 @@ import { Facebook, Instagram, Youtube, Mail, Phone, MapPin, MessageSquare, Send 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 const Footer = () => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,15 +15,38 @@ const Footer = () => {
     
     setIsSubmitting(true);
     
-    // Simuler l'inscription newsletter
-    setTimeout(() => {
+    try {
+      const { error } = await supabase
+        .from('newsletters')
+        .insert([{ email }]);
+
+      if (error) {
+        if (error.code === '23505') { // unique constraint violation
+          toast({
+            title: "Email déjà inscrit",
+            description: "Cet email est déjà inscrit à notre newsletter.",
+            variant: "destructive",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: "Inscription réussie !",
+          description: "Vous recevrez nos dernières actualités par email.",
+        });
+        setEmail('');
+      }
+    } catch (error) {
+      console.error('Erreur inscription newsletter:', error);
       toast({
-        title: "Inscription réussie !",
-        description: "Vous recevrez nos dernières actualités par email.",
+        title: "Erreur",
+        description: "Une erreur s'est produite. Veuillez réessayer.",
+        variant: "destructive",
       });
-      setEmail('');
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
   return <footer className="bg-gray-900 text-white mb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
