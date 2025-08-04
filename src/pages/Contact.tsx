@@ -67,12 +67,10 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { name: "WhatsApp", url: "https://wa.me/243996886079", emoji: "💬", color: "bg-green-500" },
-    { name: "Facebook", url: "#", emoji: "📘", color: "bg-blue-600" },
-    { name: "Twitter", url: "#", emoji: "🐦", color: "bg-blue-400" },
-    { name: "Instagram", url: "#", emoji: "📷", color: "bg-pink-500" },
-    { name: "LinkedIn", url: "#", emoji: "💼", color: "bg-blue-700" },
-    { name: "YouTube", url: "#", emoji: "📺", color: "bg-red-600" }
+    { name: "WhatsApp", url: "https://whatsapp.com/channel/0029Vb6WpqMH5JLupOdQDF3S", emoji: "💬", color: "bg-green-500" },
+    { name: "Facebook", url: "https://www.facebook.com/kakofm97.2/", emoji: "📘", color: "bg-blue-600" },
+    { name: "Instagram", url: "https://www.instagram.com/kakofm/", emoji: "📷", color: "bg-pink-500" },
+    { name: "YouTube", url: "https://www.youtube.com/@KAKOTV-yl6ig", emoji: "📺", color: "bg-red-600" }
   ];
 
   return (
@@ -187,7 +185,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-6">
+          <div className="space-y-6 lg:sticky lg:top-20">
             {/* Contact Details */}
             <Card className="hover-lift">
               <CardHeader>
@@ -221,7 +219,7 @@ const Contact = () => {
                 <Button 
                   size="sm" 
                   className="bg-white text-gray-900 hover:bg-gray-100"
-                  onClick={() => window.open('https://wa.me/243996886079', '_blank')}
+                  onClick={() => window.open('https://whatsapp.com/channel/0029Vb6WpqMH5JLupOdQDF3S', '_blank')}
                 >
                   💬 Ouvrir WhatsApp
                 </Button>
