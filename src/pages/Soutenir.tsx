@@ -116,8 +116,8 @@ const Soutenir = () => {
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Projets en cours</h2>
           <Card className="hover-lift">
-            <CardContent className="p-8">
-              <div className="flex items-start gap-6">
+            <CardContent className="p-4 sm:p-6 lg:p-8">
+              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                 <div className="bg-kako-blue p-4 rounded-full flex-shrink-0">
                   <Lightbulb className="h-8 w-8 text-white" />
                 </div>
