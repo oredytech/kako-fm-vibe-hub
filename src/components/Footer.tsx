@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Youtube, Mail, Phone, MapPin, MessageSquare, Send } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { toast } from '@/hooks/use-toast';
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    
+    setIsSubmitting(true);
+    
+    // Simuler l'inscription newsletter
+    setTimeout(() => {
+      toast({
+        title: "Inscription réussie !",
+        description: "Vous recevrez nos dernières actualités par email.",
+      });
+      setEmail('');
+      setIsSubmitting(false);
+    }, 1000);
+  };
   return <footer className="bg-gray-900 text-white mb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo et Description */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -15,16 +37,16 @@ const Footer = () => {
               Radio en ligne engagée et jeune. Nous donnons la voix aux invisibles et promouvons l'inclusion sociale à Goma et dans la région du Nord-Kivu.
             </p>
             <div className="flex space-x-4">
-              <a href="https://facebook.com/kakofm" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://whatsapp.com/channel/0029Vb6WpqMH5JLupOdQDF3S" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors">
+                <MessageSquare className="h-5 w-5" />
+              </a>
+              <a href="https://www.facebook.com/kakofm97.2/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="https://instagram.com/kakofm" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://www.instagram.com/kakofm/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-pink-400 transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="https://twitter.com/kakofm" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="https://youtube.com/kakofm" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://www.youtube.com/@KAKOTV-yl6ig" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-400 transition-colors">
                 <Youtube className="h-5 w-5" />
               </a>
             </div>
@@ -102,6 +124,42 @@ const Footer = () => {
                 </a>
               </div>
             </div>
+          </div>
+
+          {/* Newsletter */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Newsletter</h3>
+            <p className="text-gray-300 text-sm">
+              Recevez nos dernières actualités et programmes directement dans votre boîte email.
+            </p>
+            <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+              <Input
+                type="email"
+                placeholder="Votre email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 focus:border-kako-blue"
+              />
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                size="sm"
+                className="w-full gradient-kako text-white"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-2"></div>
+                    Inscription...
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-3 w-3 mr-2" />
+                    S'inscrire
+                  </>
+                )}
+              </Button>
+            </form>
           </div>
         </div>
 
