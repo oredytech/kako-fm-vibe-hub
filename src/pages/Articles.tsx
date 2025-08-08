@@ -4,8 +4,10 @@ import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Calendar, ExternalLink, Loader2 } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Search, Calendar, ExternalLink, Loader2, Tag, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import CategoriesDialog from '@/components/CategoriesDialog';
 
 interface WordPressPost {
   id: number;
@@ -14,24 +16,35 @@ interface WordPressPost {
   date: string;
   link: string;
   slug: string;
+  categories: number[];
   _embedded?: {
     'wp:featuredmedia'?: Array<{
       source_url: string;
       alt_text: string;
     }>;
+    'wp:term'?: Array<Array<{
+      id: number;
+      name: string;
+      slug: string;
+    }>>;
   };
 }
 
 const Articles = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [selectedCategoryName, setSelectedCategoryName] = useState<string>('');
 
   const { data: articles, isLoading, error } = useQuery({
-    queryKey: ['articles', page, searchTerm],
+    queryKey: ['articles', page, searchTerm, selectedCategory],
     queryFn: async () => {
       let url = `https://kakofm.net/wp-json/wp/v2/posts?_embed&per_page=12&page=${page}`;
       if (searchTerm) {
         url += `&search=${encodeURIComponent(searchTerm)}`;
+      }
+      if (selectedCategory) {
+        url += `&categories=${selectedCategory}`;
       }
       const response = await fetch(url);
       if (!response.ok) throw new Error('Erreur lors du chargement des articles');
@@ -41,6 +54,18 @@ const Articles = () => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
+    setPage(1);
+  };
+
+  const handleCategorySelect = (categoryId: number, categoryName: string) => {
+    setSelectedCategory(categoryId);
+    setSelectedCategoryName(categoryName);
+    setPage(1);
+  };
+
+  const clearCategory = () => {
+    setSelectedCategory(null);
+    setSelectedCategoryName('');
     setPage(1);
   };
 
@@ -55,23 +80,47 @@ const Articles = () => {
           </p>
         </div>
 
-        {/* Search */}
+        {/* Search & Filters */}
         <Card className="mb-8">
           <CardContent className="p-6">
-            <form onSubmit={handleSearch} className="flex gap-4">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                <Input
-                  type="text"
-                  placeholder="Rechercher un article..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
+            <form onSubmit={handleSearch} className="space-y-4">
+              <div className="flex gap-4">
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                  <Input
+                    type="text"
+                    placeholder="Rechercher un article..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10"
+                  />
+                </div>
+                <Button type="submit" className="gradient-kako text-white">
+                  Rechercher
+                </Button>
+                <CategoriesDialog
+                  onCategorySelect={handleCategorySelect}
+                  selectedCategory={selectedCategory || undefined}
                 />
               </div>
-              <Button type="submit" className="gradient-kako text-white">
-                Rechercher
-              </Button>
+              
+              {/* Active Filters */}
+              {selectedCategory && (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-gray-600">Filtre actif:</span>
+                  <Badge variant="secondary" className="flex items-center gap-2">
+                    <Tag className="h-3 w-3" />
+                    {selectedCategoryName}
+                    <button
+                      type="button"
+                      onClick={clearCategory}
+                      className="ml-1 hover:bg-gray-200 rounded-full p-0.5"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </Badge>
+                </div>
+              )}
             </form>
           </CardContent>
         </Card>
@@ -110,6 +159,22 @@ const Articles = () => {
                     <h3 className="font-semibold text-lg mb-3 line-clamp-2">
                       {article.title.rendered}
                     </h3>
+                    
+                    {/* Categories */}
+                    {article._embedded?.['wp:term']?.[0] && (
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {article._embedded['wp:term'][0].map((category) => (
+                          <Badge 
+                            key={category.id} 
+                            variant="outline" 
+                            className="text-xs bg-kako-blue/10 text-kako-blue border-kako-blue/20"
+                          >
+                            {category.name}
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
+                    
                     <div 
                       className="text-gray-600 text-sm mb-4 line-clamp-3"
                       dangerouslySetInnerHTML={{ 

@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
+import NewsletterTrigger from "./components/NewsletterTrigger";
 import Index from "./pages/Index";
 import Articles from "./pages/Articles";
 import Article from "./pages/Article";
@@ -35,6 +36,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <NewsletterTrigger />
       <BrowserRouter>
         <Layout>
           <Routes>
