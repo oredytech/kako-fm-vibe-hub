@@ -120,14 +120,29 @@ const Index = () => {
           {/* Background Video */}
           {videos && videos.length > 0 && (
             <div className="absolute inset-0 w-full h-full overflow-hidden">
+              {/* Mobile video - portrait 9:16 */}
               <iframe
                 src={`https://www.youtube.com/embed/${videos[0].id.videoId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&playlist=${videos[0].id.videoId}`}
-                className="absolute inset-0 w-full h-full object-cover opacity-30"
+                className="absolute inset-0 opacity-30 w-full h-full object-cover md:hidden"
                 style={{
-                  minWidth: '100%',
-                  minHeight: '100%',
+                  aspectRatio: '9/16',
+                  minHeight: '70vh',
+                  width: '100%',
+                  height: '100%'
+                }}
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              />
+              {/* Desktop video - landscape */}
+              <iframe
+                src={`https://www.youtube.com/embed/${videos[0].id.videoId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&playlist=${videos[0].id.videoId}`}
+                className="absolute inset-0 opacity-30 w-full h-full object-cover hidden md:block"
+                style={{
                   width: '100vw',
                   height: '100vh',
+                  minWidth: '100%',
+                  minHeight: '100%',
                   transform: 'scale(1.1)'
                 }}
                 frameBorder="0"
