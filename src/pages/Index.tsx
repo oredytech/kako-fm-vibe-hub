@@ -15,11 +15,17 @@ interface WordPressPost {
   date: string;
   link: string;
   slug: string;
+  categories: number[];
   _embedded?: {
     'wp:featuredmedia'?: Array<{
       source_url: string;
       alt_text: string;
     }>;
+    'wp:term'?: Array<Array<{
+      id: number;
+      name: string;
+      slug: string;
+    }>>;
   };
 }
 interface YouTubeVideo {
@@ -161,8 +167,16 @@ const Index = () => {
                 </Card>)}
             </div> : <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {articles?.slice(0, 6).map(article => <Card key={article.id} className="hover-lift overflow-hidden">
-                  {article._embedded?.['wp:featuredmedia']?.[0] && <div className="h-48 overflow-hidden">
+                  {article._embedded?.['wp:featuredmedia']?.[0] && <div className="h-48 overflow-hidden relative">
                       <img src={article._embedded['wp:featuredmedia'][0].source_url} alt={article._embedded['wp:featuredmedia'][0].alt_text || article.title.rendered} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+                      {/* Category Badge */}
+                      {article._embedded?.['wp:term']?.[0]?.[0] && (
+                        <div className="absolute top-3 left-3">
+                          <span className="bg-kako-blue/90 text-white px-2 py-1 rounded-md text-xs font-medium backdrop-blur-sm">
+                            {article._embedded['wp:term'][0][0].name}
+                          </span>
+                        </div>
+                      )}
                     </div>}
                   <CardContent className="p-4 md:p-6">
                     <h3 className="font-semibold text-base md:text-lg mb-2 line-clamp-2">

@@ -146,13 +146,21 @@ const Articles = () => {
               {articles?.map((article) => (
                 <Card key={article.id} className="hover-lift overflow-hidden">
                   {article._embedded?.['wp:featuredmedia']?.[0] && (
-                    <div className="h-48 overflow-hidden">
+                    <div className="h-48 overflow-hidden relative">
                       <img
                         src={article._embedded['wp:featuredmedia'][0].source_url}
                         alt={article._embedded['wp:featuredmedia'][0].alt_text || article.title.rendered}
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         loading="lazy"
                       />
+                      {/* Category Badge */}
+                      {article._embedded?.['wp:term']?.[0]?.[0] && (
+                        <div className="absolute top-3 left-3">
+                          <span className="bg-kako-blue/90 text-white px-2 py-1 rounded-md text-xs font-medium backdrop-blur-sm">
+                            {article._embedded['wp:term'][0][0].name}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   )}
                   <CardContent className="p-6">

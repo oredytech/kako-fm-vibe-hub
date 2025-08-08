@@ -18,6 +18,7 @@ interface WordPressPost {
   date: string;
   slug: string;
   author: number;
+  categories: number[];
   _embedded?: {
     'wp:featuredmedia'?: Array<{
       source_url: string;
@@ -26,6 +27,11 @@ interface WordPressPost {
     author?: Array<{
       name: string;
     }>;
+    'wp:term'?: Array<Array<{
+      id: number;
+      name: string;
+      slug: string;
+    }>>;
   };
 }
 
@@ -168,12 +174,20 @@ const Article = () => {
 
           {/* Featured Image */}
           {article._embedded?.['wp:featuredmedia']?.[0] && (
-            <div className="mb-8">
+            <div className="mb-8 relative">
               <img
                 src={article._embedded['wp:featuredmedia'][0].source_url}
                 alt={article._embedded['wp:featuredmedia'][0].alt_text || article.title.rendered}
                 className="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg"
               />
+              {/* Category Badge */}
+              {article._embedded?.['wp:term']?.[0]?.[0] && (
+                <div className="absolute top-4 left-4">
+                  <span className="bg-kako-blue/90 text-white px-3 py-1.5 rounded-lg text-sm font-medium backdrop-blur-sm">
+                    {article._embedded['wp:term'][0][0].name}
+                  </span>
+                </div>
+              )}
             </div>
           )}
 
@@ -304,11 +318,21 @@ const Article = () => {
                       >
                         <div className="flex gap-3">
                           {relatedArticle._embedded?.['wp:featuredmedia']?.[0] && (
-                            <img
-                              src={relatedArticle._embedded['wp:featuredmedia'][0].source_url}
-                              alt={relatedArticle.title.rendered}
-                              className="w-16 h-16 object-cover rounded flex-shrink-0"
-                            />
+                            <div className="w-16 h-16 relative flex-shrink-0">
+                              <img
+                                src={relatedArticle._embedded['wp:featuredmedia'][0].source_url}
+                                alt={relatedArticle.title.rendered}
+                                className="w-full h-full object-cover rounded"
+                              />
+                              {/* Small category badge for related articles */}
+                              {relatedArticle._embedded?.['wp:term']?.[0]?.[0] && (
+                                <div className="absolute -top-1 -left-1">
+                                  <span className="bg-kako-blue/90 text-white px-1 py-0.5 rounded text-[10px] font-medium backdrop-blur-sm">
+                                    {relatedArticle._embedded['wp:term'][0][0].name.substring(0, 8)}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
                           )}
                           <div className="flex-1 min-w-0">
                             <h4 
