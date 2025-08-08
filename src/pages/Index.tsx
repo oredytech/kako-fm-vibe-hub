@@ -117,6 +117,27 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="min-h-[70vh] flex items-center bg-gradient-to-br from-kako-blue via-kako-red to-kako-yellow relative">
+          {/* Background Video */}
+          {videos && videos.length > 0 && (
+            <div className="absolute inset-0 w-full h-full overflow-hidden">
+              <iframe
+                src={`https://www.youtube.com/embed/${videos[0].id.videoId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&playlist=${videos[0].id.videoId}`}
+                className="absolute inset-0 w-full h-full object-cover opacity-30"
+                style={{
+                  minWidth: '100%',
+                  minHeight: '100%',
+                  width: '100vw',
+                  height: '100vh',
+                  transform: 'scale(1.1)'
+                }}
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              />
+              {/* Overlay to maintain gradient effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-kako-blue/70 via-kako-red/70 to-kako-yellow/70"></div>
+            </div>
+          )}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
             <div className="text-center text-white">
               <div className="animate-slide-up">
