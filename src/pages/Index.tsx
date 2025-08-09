@@ -116,43 +116,17 @@ const Index = () => {
   return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="min-h-[70vh] flex items-center bg-gradient-to-br from-kako-blue via-kako-red to-kako-yellow relative">
-          {/* Background Video */}
-          {videos && videos.length > 0 && (
-            <div className="absolute inset-0 w-full h-full overflow-hidden">
-              {/* Mobile video - portrait 9:16 */}
-              <iframe
-                src={`https://www.youtube.com/embed/${videos[0].id.videoId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&playlist=${videos[0].id.videoId}`}
-                className="absolute inset-0 opacity-30 w-full h-full object-cover md:hidden"
-                style={{
-                  aspectRatio: '9/16',
-                  minHeight: '70vh',
-                  width: '100%',
-                  height: '100%'
-                }}
-                frameBorder="0"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-              />
-              {/* Desktop video - landscape */}
-              <iframe
-                src={`https://www.youtube.com/embed/${videos[0].id.videoId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&playlist=${videos[0].id.videoId}`}
-                className="absolute inset-0 opacity-30 w-full h-full object-cover hidden md:block"
-                style={{
-                  width: '100vw',
-                  height: '100vh',
-                  minWidth: '100%',
-                  minHeight: '100%',
-                  transform: 'scale(1.1)'
-                }}
-                frameBorder="0"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-              />
-              {/* Overlay to maintain gradient effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-kako-blue/70 via-kako-red/70 to-kako-yellow/70"></div>
-            </div>
-          )}
+        <div className="min-h-[70vh] flex items-center relative">
+          {/* Background Image */}
+          <div className="absolute inset-0 w-full h-full">
+            <img 
+              src="/lovable-uploads/419a535d-f60c-4eda-8b70-35c3e9d240a7.png" 
+              alt="Studio radio KAKO FM" 
+              className="w-full h-full object-cover"
+            />
+            {/* Overlay to maintain gradient effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-kako-blue/80 via-kako-red/80 to-kako-yellow/80"></div>
+          </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
             <div className="text-center text-white">
               <div className="animate-slide-up">
