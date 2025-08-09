@@ -298,9 +298,10 @@ const VideoPlayer = () => {
 
           {/* Sidebar - Articles */}
           <div className="lg:col-span-1">
-            <Card>
-              <CardContent className="p-4 md:p-6">
-                <h3 className="font-semibold text-lg mb-4">Articles récents</h3>
+            <div className="sticky top-8">
+              <Card>
+                <CardContent className="p-4 md:p-6">
+                  <h3 className="font-semibold text-lg mb-4">Articles récents</h3>
                 {articles && articles.length > 0 ? (
                   <div className="space-y-4">
                     {articles.map((article: any) => (
@@ -328,8 +329,9 @@ const VideoPlayer = () => {
                     <p>Chargement des articles...</p>
                   </div>
                 )}
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
 

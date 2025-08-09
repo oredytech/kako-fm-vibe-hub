@@ -237,9 +237,11 @@ const Index = () => {
                   <div className="relative group">
                     <img src={video.snippet.thumbnails.medium.url} alt={video.snippet.title} className="w-full h-48 object-cover" />
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <Button size="lg" className="bg-white/90 text-gray-900 hover:bg-white" onClick={() => window.open(`https://www.youtube.com/watch?v=${video.id.videoId}`, '_blank')}>
-                        <Play className="h-5 w-5 mr-2" />
-                        Regarder
+                      <Button size="lg" className="bg-white/90 text-gray-900 hover:bg-white" asChild>
+                        <Link to={`/video/${video.id.videoId}`}>
+                          <Play className="h-5 w-5 mr-2" />
+                          Regarder
+                        </Link>
                       </Button>
                     </div>
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -264,9 +266,11 @@ const Index = () => {
                       </div>
                     </div>
                     
-                    <Button size="sm" className="w-full gradient-kako text-white" onClick={() => window.open(`https://www.youtube.com/watch?v=${video.id.videoId}`, '_blank')}>
-                      <Play className="h-4 w-4 mr-1" />
-                      Regarder
+                    <Button size="sm" className="w-full gradient-kako text-white" asChild>
+                      <Link to={`/video/${video.id.videoId}`}>
+                        <Play className="h-4 w-4 mr-1" />
+                        Regarder
+                      </Link>
                     </Button>
                   </CardContent>
                 </Card>)}
