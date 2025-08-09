@@ -82,9 +82,9 @@ const Articles = () => {
 
         {/* Search & Filters */}
         <Card className="mb-8">
-          <CardContent className="p-6">
+          <CardContent className="p-4 sm:p-6">
             <form onSubmit={handleSearch} className="space-y-4">
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                   <Input
@@ -95,13 +95,15 @@ const Articles = () => {
                     className="pl-10"
                   />
                 </div>
-                <Button type="submit" className="gradient-kako text-white">
-                  Rechercher
-                </Button>
-                <CategoriesDialog
-                  onCategorySelect={handleCategorySelect}
-                  selectedCategory={selectedCategory || undefined}
-                />
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+                  <Button type="submit" className="gradient-kako text-white w-full sm:w-auto">
+                    Rechercher
+                  </Button>
+                  <CategoriesDialog
+                    onCategorySelect={handleCategorySelect}
+                    selectedCategory={selectedCategory || undefined}
+                  />
+                </div>
               </div>
               
               {/* Active Filters */}
