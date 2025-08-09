@@ -116,14 +116,13 @@ const Index = () => {
   return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="h-screen flex items-center relative">
+        <div className="min-h-[70vh] flex items-center relative">
           {/* Background Image */}
           <div className="absolute inset-0 w-full h-full">
             <img 
               src="/lovable-uploads/419a535d-f60c-4eda-8b70-35c3e9d240a7.png" 
               alt="Studio radio KAKO FM" 
-              className="w-full h-full object-cover fixed top-0 left-0"
-              style={{ zIndex: -1 }}
+              className="w-full h-full object-cover"
             />
             {/* Overlay to maintain gradient effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-kako-blue/80 via-kako-red/80 to-kako-yellow/80"></div>
