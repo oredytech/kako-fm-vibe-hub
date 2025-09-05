@@ -151,20 +151,20 @@ const Index = () => {
             <div className="text-center text-white">
               <div className="animate-slide-up">
                 
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-4 md:mb-6 tracking-wider leading-tight">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-4 md:mb-6 tracking-wider leading-tight drop-shadow-2xl">
                   97.2 MHz
                 </h1>
-                <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
+                <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 drop-shadow-xl">
                   KAKO FM
                 </h2>
-                <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 opacity-90 max-w-3xl mx-auto">
+                <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 opacity-90 max-w-3xl mx-auto drop-shadow-lg">
                   Radio & Télévision Kako - La voix de la jeunesse engagée
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto">
-                  <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 px-4 py-3 text-sm md:text-base" onClick={handleLiveRadio}>
+                  <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 px-4 py-3 text-sm md:text-base shadow-xl hover:shadow-2xl transition-shadow" onClick={handleLiveRadio}>
                     🎧 Écouter en direct
                   </Button>
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900 px-4 py-3 text-sm md:text-base bg-transparent" asChild>
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900 px-4 py-3 text-sm md:text-base bg-transparent shadow-xl hover:shadow-2xl transition-shadow" asChild>
                     <Link to="/programmes">Voir les Programmes</Link>
                   </Button>
                 </div>
