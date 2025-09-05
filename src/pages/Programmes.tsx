@@ -127,16 +127,18 @@ const Programmes = () => {
                 <Phone className="h-8 w-8 mx-auto mb-3 text-kako-blue" />
                 <h4 className="font-semibold mb-2">Contacts</h4>
                 <p className="text-sm text-muted-foreground">
-                  +243 979 130 601
+                  +243 996 886 079
+                  <br />
+                  +243 980 265 601
                 </p>
               </div>
               <div className="text-center">
                 <Mail className="h-8 w-8 mx-auto mb-3 text-kako-blue" />
                 <h4 className="font-semibold mb-2">E-mail</h4>
                 <p className="text-sm text-muted-foreground">
-                  direction@kakofm.net
-                  <br />
                   kakofmtv@gmail.com
+                  <br />
+                  contact@kakofm.net
                 </p>
               </div>
               <div className="text-center">
