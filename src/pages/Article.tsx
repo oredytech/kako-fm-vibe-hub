@@ -9,6 +9,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Calendar, Clock, User, Share2, Facebook, Twitter, MessageCircle, Copy, ArrowLeft, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ArticleAd from '@/components/ArticleAd';
+import SidebarAd from '@/components/SidebarAd';
 
 interface WordPressPost {
   id: number;
@@ -252,6 +254,9 @@ const Article = () => {
               />
             </article>
 
+            {/* Article Advertisement */}
+            <ArticleAd />
+
             {/* Comment Form */}
             <Card className="mt-12">
               <CardContent className="p-6">
@@ -303,7 +308,10 @@ const Article = () => {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 space-y-6">
+            {/* Sidebar Advertisement */}
+            <SidebarAd />
+            
             {/* À lire aussi */}
             {relatedArticles && (
               <Card className="sticky top-24">

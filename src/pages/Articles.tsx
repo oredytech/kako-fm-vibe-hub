@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Search, Calendar, ExternalLink, Loader2, Tag, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CategoriesDialog from '@/components/CategoriesDialog';
+import BannerAd from '@/components/BannerAd';
 
 interface WordPressPost {
   id: number;
@@ -79,6 +80,9 @@ const Articles = () => {
             Découvrez nos derniers articles sur l'actualité, la culture et la société
           </p>
         </div>
+
+        {/* Banner Advertisement */}
+        <BannerAd />
 
         {/* Search & Filters */}
         <Card className="mb-8">

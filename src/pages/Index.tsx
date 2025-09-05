@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calendar, Clock, Eye, Users, Play, ExternalLink, Download, Headphones, Phone, Mail, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import BannerAd from '@/components/BannerAd';
 interface WordPressPost {
   id: number;
   title: {
@@ -231,6 +232,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Banner Advertisement */}
+      <BannerAd />
+
       {/* Latest Videos */}
       <section className="py-8 md:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -297,6 +301,9 @@ const Index = () => {
             </div>}
         </div>
       </section>
+
+      {/* Banner Advertisement */}
+      <BannerAd />
 
       {/* Latest Podcasts */}
       <section className="py-8 md:py-16 bg-white">
