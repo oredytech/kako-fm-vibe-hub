@@ -95,6 +95,26 @@ const Index = () => {
     imageUrl: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png",
     category: "Société"
   }];
+  // Images du studio pour rotation quotidienne
+  const studioImages = [
+    "/lovable-uploads/2f6127f1-73c0-45d0-8ffa-607ce1cc2f27.png",
+    "/lovable-uploads/e0b725fd-53e8-4a11-969e-8c1746b360d8.png", 
+    "/lovable-uploads/8f58c642-245d-4062-b793-c59c35a2986b.png",
+    "/lovable-uploads/29d54709-ad79-47ee-b9bd-60a672633460.png",
+    "/lovable-uploads/d784d28e-961d-4c55-8a69-bd0c02d1b8f4.png",
+    "/lovable-uploads/4519f4db-2352-4175-8fd9-6c94bf912d10.png",
+    "/lovable-uploads/5f6de7c2-8f1e-4130-a639-d505290aa64d.png",
+    "/lovable-uploads/11d1a61c-e417-4fa4-9daa-3086725b4733.png",
+    "/lovable-uploads/4b55ef86-f82d-4f47-b6c4-9c26dfc99977.png"
+  ];
+
+  // Fonction pour obtenir l'image du jour
+  const getDailyStudioImage = () => {
+    const today = new Date();
+    const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24));
+    return studioImages[dayOfYear % studioImages.length];
+  };
+
   const handleLiveRadio = () => {
     const audioPlayer = document.querySelector('audio');
     if (audioPlayer) {
@@ -120,12 +140,12 @@ const Index = () => {
           {/* Background Image */}
           <div className="absolute inset-0 w-full h-full">
             <img 
-              src="/lovable-uploads/419a535d-f60c-4eda-8b70-35c3e9d240a7.png" 
-              alt="Studio radio KAKO FM" 
+              src={getDailyStudioImage()} 
+              alt="Studio radio KAKO FM - Images du quotidien" 
               className="w-full h-full object-cover"
             />
-            {/* Overlay to maintain gradient effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-kako-blue/80 via-kako-red/80 to-kako-yellow/80"></div>
+            {/* Overlay avec opacité réduite pour meilleure visibilité */}
+            <div className="absolute inset-0 bg-gradient-to-br from-kako-blue/40 via-kako-red/40 to-kako-yellow/40"></div>
           </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
             <div className="text-center text-white">
