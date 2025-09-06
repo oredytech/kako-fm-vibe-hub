@@ -7,7 +7,7 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "13.0.4"
@@ -59,6 +59,135 @@ export type Database = {
           is_active?: boolean
           subscribed_at?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          amazon_url: string | null
+          category: string
+          created_at: string
+          description: string | null
+          discount_price: number | null
+          id: string
+          image_url: string
+          in_stock: boolean
+          is_amazon_affiliate: boolean
+          is_featured: boolean
+          name: string
+          price: number
+          updated_at: string
+        }
+        Insert: {
+          amazon_url?: string | null
+          category: string
+          created_at?: string
+          description?: string | null
+          discount_price?: number | null
+          id?: string
+          image_url: string
+          in_stock?: boolean
+          is_amazon_affiliate?: boolean
+          is_featured?: boolean
+          name: string
+          price: number
+          updated_at?: string
+        }
+        Update: {
+          amazon_url?: string | null
+          category?: string
+          created_at?: string
+          description?: string | null
+          discount_price?: number | null
+          id?: string
+          image_url?: string
+          in_stock?: boolean
+          is_amazon_affiliate?: boolean
+          is_featured?: boolean
+          name?: string
+          price?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          email: string
+          id: string
+          role: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          email: string
+          id?: string
+          role?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          email?: string
+          id?: string
+          role?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      promotions: {
+        Row: {
+          created_at: string
+          description: string | null
+          end_date: string
+          id: string
+          is_active: boolean
+          minimum_amount: number | null
+          name: string
+          promo_code: string | null
+          start_date: string
+          type: string
+          updated_at: string
+          usage_count: number
+          usage_limit: number | null
+          value: number
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          end_date: string
+          id?: string
+          is_active?: boolean
+          minimum_amount?: number | null
+          name: string
+          promo_code?: string | null
+          start_date: string
+          type: string
+          updated_at?: string
+          usage_count?: number
+          usage_limit?: number | null
+          value: number
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          end_date?: string
+          id?: string
+          is_active?: boolean
+          minimum_amount?: number | null
+          name?: string
+          promo_code?: string | null
+          start_date?: string
+          type?: string
+          updated_at?: string
+          usage_count?: number
+          usage_limit?: number | null
+          value?: number
         }
         Relationships: []
       }
