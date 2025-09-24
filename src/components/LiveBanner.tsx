@@ -49,7 +49,7 @@ const LiveBanner = () => {
         <div className="flex items-center justify-center space-x-2 sm:space-x-4 text-xs sm:text-sm font-medium">
           <div className="flex items-center space-x-1 sm:space-x-2">
             <Radio className="h-3 w-3 sm:h-4 sm:w-4 animate-pulse" />
-            <span className="text-xs sm:text-sm">À L'ANTENNE</span>
+            <span className="text-xs sm:text-sm">FLUX DÉSACTIVÉ (Suivez nous sur fm)</span>
           </div>
           <div className="hidden sm:block text-sm sm:text-lg font-bold">
             {currentProgram}
