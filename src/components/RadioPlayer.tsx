@@ -10,7 +10,7 @@ const RadioPlayer = () => {
   const [currentShow, setCurrentShow] = useState('');
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const streamUrl = "https://stream.zeno.fm/qdgq60qkb3gvv";
+  const streamUrl = "https://stream.zeno.f/qdgq60qkb3gvv";
 
   // Update current show every minute
   useEffect(() => {
