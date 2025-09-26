@@ -9,7 +9,7 @@ const Equipe = () => {
   const direction = [
     {
       id: 1,
-      name: "Oredy MUSANDA",
+      name: "Fidèle KARUHIJE",
       role: "Directeur Général",
       image: "/lovable-uploads/aabba1de-25fd-401f-93f5-5dec01693fae.png"
     },
